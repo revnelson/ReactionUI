@@ -1,13 +1,9 @@
-import styled from "styled-components";
+import compose from "recompose/compose";
 import { withRouter } from "react-router-dom";
+import { withNamespaces } from "react-i18next";
 
-const Page = styled.div`
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-`;
-
-export default withRouter(Page);
+export default namespaces =>
+  compose(
+    withRouter,
+    withNamespaces(namespaces)
+  );

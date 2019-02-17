@@ -1,12 +1,10 @@
 import { appStore } from "./App";
-// import { themeSwitcherStore } from "./ThemeSwitcher";
-// import { langSwitcherStore } from "./LangSwitcher";
+import { langStore } from "./Lang";
 import { withClientState } from "apollo-link-state";
 import flow from "lodash/fp/flow";
 import assignIn from "lodash/fp/assignIn";
 import map from "lodash/fp/map";
 import reduce from "lodash/fp/reduce";
-import { langStore } from "./Lang";
 const reduceWithDefault = reduce.convert({ cap: false });
 
 /**

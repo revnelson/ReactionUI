@@ -1,0 +1,15 @@
+import { {{camelCase storeName}}Query } from "./queries";
+
+export const sampleToggle = (_, none, { cache }) => {
+  const test = !cache.readQuery({ query: {{camelCase storeName}}Query }).{{camelCase storeName}}.test;
+
+  const data = {
+    {{camelCase storeName}}: {
+      test,
+      __typename: "{{camelCase storeName}}"
+    }
+  };
+
+  cache.writeData({ data });
+  return null;
+};

@@ -1,5 +1,13 @@
 import React from "react";
-import Page from "../components/page";
+import { Wrapper } from "../style/wrapper";
+import Helmet from "react-helmet-async";
 
-const Error = () => <Page>Error!</Page>;
+const Error = () => (
+  <Wrapper>
+    <Helmet>
+      <title>Error!</title>
+    </Helmet>
+    Error! Please refresh to try again.
+  </Wrapper>
+);
 export default Error;

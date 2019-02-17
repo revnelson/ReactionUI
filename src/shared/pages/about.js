@@ -1,15 +1,16 @@
 import React from "react";
 import Helmet from "react-helmet-async";
 import Page from "../components/page";
+import { Wrapper } from "../style/wrapper";
 
 const About = () => (
-  <Page>
+  <Wrapper>
     <Helmet>
       <title>About Page</title>
     </Helmet>
 
     <div>This is the about page</div>
-  </Page>
+  </Wrapper>
 );
 
-export default About;
+export default Page()(About);

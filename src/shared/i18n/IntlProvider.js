@@ -7,7 +7,7 @@ import { withApollo } from "react-apollo";
 
 import deDE from "./locales/de_DE.json";
 import enUS from "./locales/en_US.json";
-import { withLangStore } from "../store/Lang.js";
+import { withLangStore } from "../store/Lang";
 
 i18next.init({
   fallbackLng: "en_US",

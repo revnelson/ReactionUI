@@ -1,1 +1,0 @@
-exports.ids=[1],exports.modules={47:function(e,t,a){"use strict";a.r(t);var l=a(0),n=a.n(l),u=a(7),r=a.n(u),i=a(5);t.default=function(){return n.a.createElement(i.a,null,n.a.createElement(r.a,null,n.a.createElement("title",null,"About Page")),n.a.createElement("div",null,"This is the about page"))}}};

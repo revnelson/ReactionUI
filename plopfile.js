@@ -6,100 +6,78 @@ module.exports = function(plop) {
         type: "prompt",
         name: "componentName",
         message: "Name of your component:"
-      },
-      {
-        type: "confirm",
-        name: "connectToRedux",
-        message: "Do you want the component to be connected to Redux?",
-        default: true
-      },
-      {
-        type: "confirm",
-        name: "useFlow",
-        message: "Do you want Flow to be added to your component?",
-        default: true
-      }
-    ],
-    actions: answers => {
-      const actions = [
-        {
-          type: "add",
-          path:
-            "./src/shared/components/{{properCase componentName}}/{{properCase componentName}}.js",
-          templateFile: "./config/plop/component/component.js.plop"
-        },
-        {
-          type: "add",
-          path:
-            "./src/shared/components/{{properCase componentName}}/{{properCase componentName}}.test.js",
-          templateFile: "./config/plop/component/component.test.js.plop"
-        }
-      ];
-
-      if (answers.connectToRedux) {
-        actions.push({
-          type: "add",
-          path: "./src/shared/components/{{properCase componentName}}/index.js",
-          templateFile: "./config/plop/component/index.connected.js.plop"
-        });
-      } else {
-        actions.push({
-          type: "add",
-          path: "./src/shared/components/{{properCase componentName}}/index.js",
-          templateFile: "./config/plop/component/index.unconnected.js.plop"
-        });
-      }
-
-      return actions;
-    }
-  });
-
-  plop.setGenerator("Redux Reducer", {
-    description: "Generate a new Redux reducer (reducer, actions, selectors …)",
-    prompts: [
-      {
-        type: "prompt",
-        name: "reducerName",
-        message: 'Name of your reducer (e.g. "Calendar Event" or "Vehicle")'
       }
     ],
     actions: () => {
       const actions = [
         {
           type: "add",
-          path: "./src/shared/store/{{camelCase reducerName}}/actions.js",
-          templateFile: "./config/plop/reducer/actions.js.plop"
-        },
-        {
-          type: "add",
-          path: "./src/shared/store/{{camelCase reducerName}}/actions.test.js",
-          templateFile: "./config/plop/reducer/actions.test.js.plop"
-        },
-        {
-          type: "add",
-          path: "./src/shared/store/{{camelCase reducerName}}/reducer.js",
-          templateFile: "./config/plop/reducer/reducer.js.plop"
-        },
-        {
-          type: "add",
-          path: "./src/shared/store/{{camelCase reducerName}}/reducer.test.js",
-          templateFile: "./config/plop/reducer/reducer.test.js.plop"
-        },
-        {
-          type: "add",
-          path: "./src/shared/store/{{camelCase reducerName}}/selectors.js",
-          templateFile: "./config/plop/reducer/selectors.js.plop"
-        },
-        {
-          type: "add",
           path:
-            "./src/shared/store/{{camelCase reducerName}}/selectors.test.js",
-          templateFile: "./config/plop/reducer/selectors.test.js.plop"
+            "./src/shared/components/{{pascalCase componentName}}/{{pascalCase componentName}}.js",
+          templateFile: "./config/plop/component/component.js.plop"
+        }
+      ];
+
+      return actions;
+    }
+  });
+
+  plop.setActionType("doTheThing", function(answers, config, plop) {
+    // do something
+    doSomething(config.configProp);
+    // if something went wrong
+    throw "error message";
+    // otherwise
+    return "success status message";
+  });
+
+  plop.setGenerator("Apollo Store", {
+    description: "Generate a new Apollo local store",
+    prompts: [
+      {
+        type: "prompt",
+        name: "storeName",
+        message: 'Name of your store (e.g. "Lang" or "Theme")'
+      }
+    ],
+    actions: () => {
+      const actions = [
+        {
+          type: "add",
+          path: "./src/shared/store/{{pascalCase storeName}}/index.js",
+          templateFile: "./config/plop/store/index.js.plop"
         },
         {
           type: "add",
-          path: "./src/shared/store/{{camelCase reducerName}}/types.js",
-          templateFile: "./config/plop/reducer/types.js.plop"
+          path: "./src/shared/store/{{pascalCase storeName}}/defaults.js",
+          templateFile: "./config/plop/store/defaults.js.plop"
+        },
+        {
+          type: "add",
+          path: "./src/shared/store/{{pascalCase storeName}}/queries.js",
+          templateFile: "./config/plop/store/queries.js.plop"
+        },
+        {
+          type: "add",
+          path: "./src/shared/store/{{pascalCase storeName}}/mutations.js",
+          templateFile: "./config/plop/store/mutations.js.plop"
+        },
+        {
+          type: "add",
+          path: "./src/shared/store/{{pascalCase storeName}}/resolvers.js",
+          templateFile: "./config/plop/store/resolvers.js.plop"
+        },
+        {
+          type: "modify",
+          path: "./src/shared/store/client.js",
+          pattern: /(import { withClientState } from "apollo-link-state";)/gi,
+          template: `import { {{camelCase storeName}}Store } from "./{{pascalCase storeName}}";\r\nimport { withClientState } from "apollo-link-state";`
+        },
+        {
+          type: "modify",
+          path: "./src/shared/store/client.js",
+          pattern: /(];)/gi,
+          template: ", {{camelCase storeName}}Store];"
         }
       ];
 

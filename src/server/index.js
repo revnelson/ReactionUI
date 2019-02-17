@@ -2,12 +2,10 @@ import express from "express";
 import cors from "cors";
 import path from "path";
 import chalk from "chalk";
-// import manifestHelpers from 'express-manifest-helpers';
 import manifestHelpers from "./middleware/manifest-helpers";
-import bodyParser from "body-parser";
 import serverRender from "./render";
 import paths from "../../config/paths";
-import morgan from "morgan";
+import compression from "compression";
 
 require("dotenv").config();
 
@@ -24,12 +22,9 @@ if (process.env.NODE_ENV === "development") {
     res.send("");
   });
 }
-
-app.use(morgan("tiny"));
+app.use(compression({ level: 9 }));
 
 app.use(cors());
-
-app.use(bodyParser.json());
 
 const manifestPath = path.join(paths.clientBuild, paths.publicPath);
 

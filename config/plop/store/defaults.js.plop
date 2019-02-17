@@ -1,0 +1,6 @@
+export const defaults = {
+  {{camelCase storeName}}: {
+    test: true,
+    __typename: "{{camelCase storeName}}"
+  }
+};
