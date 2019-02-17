@@ -1,38 +1,35 @@
-import React from 'react';
-import { hydrate } from 'react-dom';
-import { Provider } from 'react-redux';
-import { ConnectedRouter as Router, routerMiddleware } from 'connected-react-router';
-import { configureStore } from '../shared/store';
-import App from '../shared/App';
-import IntlProvider from '../shared/i18n/IntlProvider';
-import createHistory from '../shared/store/history';
+import React from "react";
+import { hydrate } from "react-dom";
+import { BrowserRouter } from "react-router-dom";
+import App from "../shared/App";
+import IntlProvider from "../shared/i18n/IntlProvider";
+import importedComponents from "./imported";
+import { HelmetProvider } from "react-helmet-async";
+import { rehydrateMarks } from "react-imported-component";
+import initApollo from "../shared/store/initApollo";
+import { ApolloProvider } from "react-apollo";
 
-const browserHistory = createHistory();
-
-const store =
-    window.store ||
-    configureStore({
-        initialState: window.__PRELOADED_STATE__,
-        middleware: [routerMiddleware(browserHistory)],
-    });
-
-hydrate(
-    <Provider store={store}>
-        <Router history={browserHistory}>
-            <IntlProvider>
-                <App />
-            </IntlProvider>
-        </Router>
-    </Provider>,
-    document.getElementById('app')
+const initialState = window.__APOLLO_STATE__;
+const client = initApollo(initialState);
+const element = document.getElementById("app");
+const app = (
+  <HelmetProvider>
+    <ApolloProvider client={client}>
+      <IntlProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </IntlProvider>
+    </ApolloProvider>
+  </HelmetProvider>
 );
 
-if (process.env.NODE_ENV === 'development') {
-    if (module.hot) {
-        module.hot.accept();
-    }
+rehydrateMarks().then(() => {
+  hydrate(app, element);
+});
 
-    if (!window.store) {
-        window.store = store;
-    }
+if (process.env.NODE_ENV === "development") {
+  if (module.hot) {
+    module.hot.accept();
+  }
 }
