@@ -6,7 +6,7 @@ import IntlProvider from "../shared/i18n/IntlProvider";
 import importedComponents from "./imported";
 import { HelmetProvider } from "react-helmet-async";
 import { rehydrateMarks } from "react-imported-component";
-import initApollo from "../shared/store/initApollo";
+import initApollo from "../shared/lib/initApollo";
 import { ApolloProvider } from "react-apollo";
 
 const initialState = window.__APOLLO_STATE__;

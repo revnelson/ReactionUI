@@ -2,10 +2,12 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 import { ApolloClient } from "apollo-client";
 import { ApolloLink } from "apollo-link";
 import fetch from "isomorphic-unfetch";
-import clientState from "./client";
+import clientState from "./apolloLinkState";
 
 let apolloClient = null;
-
+const uri = `${process.browser ? "http://localhost" : process.env.HOST}:${
+  process.env.PORT
+}`;
 // Polyfill fetch() on the server (used by apollo-client)
 if (!process.browser) {
   global.fetch = fetch;

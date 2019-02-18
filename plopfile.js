@@ -69,13 +69,13 @@ module.exports = function(plop) {
         },
         {
           type: "modify",
-          path: "./src/shared/store/client.js",
+          path: "./src/shared/lib/apolloLinkState.js",
           pattern: /(import { withClientState } from "apollo-link-state";)/gi,
-          template: `import { {{camelCase storeName}}Store } from "./{{pascalCase storeName}}";\r\nimport { withClientState } from "apollo-link-state";`
+          template: `import { {{camelCase storeName}}Store } from "../store/{{pascalCase storeName}}";\r\nimport { withClientState } from "apollo-link-state";`
         },
         {
           type: "modify",
-          path: "./src/shared/store/client.js",
+          path: "./src/shared/lib/apolloLinkState.js",
           pattern: /(];)/gi,
           template: ", {{camelCase storeName}}Store];"
         }

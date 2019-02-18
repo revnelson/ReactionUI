@@ -1,6 +1,6 @@
 import React from "react";
 import Helmet from "react-helmet-async";
-import Page from "../components/page";
+import Page from "../lib/page";
 import { Wrapper } from "../style/wrapper";
 import { ReactComponent as ReactLogo } from "../assets/react.svg";
 import { withLangStore } from "../store/Lang";

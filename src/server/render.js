@@ -7,7 +7,7 @@ import HTML from "./components/HTML";
 import App from "../shared/App";
 import { HelmetProvider } from "react-helmet-async";
 import { ApolloProvider, getDataFromTree } from "react-apollo";
-import initApollo from "../shared/store/initApollo";
+import initApollo from "../shared/lib/initApollo";
 import { printDrainHydrateMarks } from "react-imported-component";
 import log from "llog";
 

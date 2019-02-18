@@ -1,5 +1,5 @@
-import { appStore } from "./App";
-import { langStore } from "./Lang";
+import { appStore } from "../store/App";
+import { langStore } from "../store/Lang";
 import { withClientState } from "apollo-link-state";
 import flow from "lodash/fp/flow";
 import assignIn from "lodash/fp/assignIn";
