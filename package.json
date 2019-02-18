@@ -16,7 +16,7 @@
     "plop": "plop",
     "start": "yarn-or-npm build && node build/server/server.js",
     "dev": "cross-env NODE_ENV=development yarn-or-npm generate-imported-component && node scripts/start.js",
-    "upgrade": "pm2 stop reactionui && git pull && yarn build && pm2 start reactionui"
+    "git-up": "pm2 stop reactionui && git pull && yarn build && pm2 start reactionui"
   },
   "moduleRoots": [
     "src/client",
