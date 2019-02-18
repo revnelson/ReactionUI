@@ -13,7 +13,7 @@ const generateStaticHTML = async () => {
   const nodemon = require("nodemon");
   const fs = require("fs");
   const puppeteer = require("puppeteer");
-  const PORT = process.env.HEADLESS_PORT || 8505;
+  const PORT = process.env.HEADLESS_PORT || 8787;
 
   const script = nodemon({
     script: `${paths.serverBuild}/server.js`,
@@ -24,7 +24,9 @@ const generateStaticHTML = async () => {
     try {
       // TODO: add try/wait/retry here instead of just generally waiting for 2000 ms
       await sleep(2000);
-      const browser = await puppeteer.launch();
+      const browser = await puppeteer.launch({
+        args: ["--no-sandbox", "--disable-setuid-sandbox"]
+      });
       const page = await browser.newPage();
       await page.goto(`${HOST}:${PORT}`);
       const pageContent = await page.content();
