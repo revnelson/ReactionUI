@@ -13,7 +13,7 @@ const generateStaticHTML = async () => {
   const nodemon = require("nodemon");
   const fs = require("fs");
   const puppeteer = require("puppeteer");
-  const PORT = process.env.PORT || 8505;
+  const PORT = process.env.HEADLESS_PORT || 8505;
 
   const script = nodemon({
     script: `${paths.serverBuild}/server.js`,
