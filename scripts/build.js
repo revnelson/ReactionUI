@@ -7,17 +7,13 @@ const webpackConfig = require("../config/webpack.config.js")(
 const paths = require("../config/paths");
 const { logMessage, compilerPromise, sleep } = require("./utils");
 
-const { choosePort } = require("react-dev-utils/WebpackDevServerUtils");
-
 const HOST = process.env.HOST || "http://localhost";
 
 const generateStaticHTML = async () => {
   const nodemon = require("nodemon");
   const fs = require("fs");
   const puppeteer = require("puppeteer");
-  const PORT = await choosePort("localhost", 8505);
-
-  process.env.PORT = PORT;
+  const PORT = process.env.PORT || 8505;
 
   const script = nodemon({
     script: `${paths.serverBuild}/server.js`,
