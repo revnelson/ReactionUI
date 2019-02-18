@@ -82,6 +82,7 @@
     "babel-plugin-named-asset-import": "^0.3.0",
     "babel-plugin-styled-components": "^1.10.0",
     "case-sensitive-paths-webpack-plugin": "^2.2.0",
+    "compression-webpack-plugin": "^2.0.0",
     "cross-env": "^5.2.0",
     "file-loader": "^3.0.1",
     "i18next-parser": "^0.13.0",

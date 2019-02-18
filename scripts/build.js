@@ -26,7 +26,7 @@ const generateStaticHTML = async () => {
         args: ["--no-sandbox", "--disable-setuid-sandbox"]
       });
       const page = await browser.newPage();
-      await page.goto(`"http://localhost":${PORT}`);
+      await page.goto(`http://localhost:${PORT}`);
       const pageContent = await page.content();
       fs.writeFileSync(`${paths.clientBuild}/index.html`, pageContent);
       await browser.close();

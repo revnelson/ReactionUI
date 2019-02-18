@@ -1,6 +1,7 @@
 const webpack = require("webpack");
 const ManifestPlugin = require("webpack-manifest-plugin");
 const CaseSensitivePathsPlugin = require("case-sensitive-paths-webpack-plugin");
+const CompressionPlugin = require("compression-webpack-plugin");
 // const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const env = require("../env")();
@@ -20,7 +21,11 @@ const client = [
     __BROWSER__: "true"
   }),
   new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-  new ManifestPlugin({ fileName: "manifest.json" })
+  new ManifestPlugin({ fileName: "manifest.json" }),
+  new CompressionPlugin({
+    test: /\.js$|\.css$|\.html$/,
+    threshold: 8192
+  })
 ];
 
 const server = [
