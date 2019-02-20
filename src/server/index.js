@@ -6,6 +6,7 @@ import manifestHelpers from "./middleware/manifest-helpers";
 import serverRender from "./render";
 import paths from "../../config/paths";
 import compression from "compression";
+import morgan from "morgan";
 
 require("dotenv").config();
 
@@ -22,6 +23,9 @@ if (process.env.NODE_ENV === "development") {
     res.send("");
   });
 }
+
+app.use(morgan("combined"));
+
 app.use(compression({ level: 9 }));
 
 app.use(cors());

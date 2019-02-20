@@ -4,6 +4,9 @@ import { ApolloLink } from "apollo-link";
 import { createHttpLink } from "apollo-link-http";
 import fetch from "isomorphic-unfetch";
 import { clientStore } from "./apolloLinkState";
+import { isServer } from "./";
+
+const { BROWSER_API_URI, SERVER_API_URI } = process.env;
 
 let apolloClient = null;
 
@@ -12,7 +15,7 @@ if (!process.browser) {
   global.fetch = fetch;
 }
 
-const uri = process.browser ? `http://localhost:4242` : `http://localhost:4242`;
+const uri = isServer ? SERVER_API_URI : BROWSER_API_URI;
 
 const serverLink = createHttpLink({
   uri,

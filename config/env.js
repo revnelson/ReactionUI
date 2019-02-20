@@ -2,18 +2,20 @@ const fs = require("fs");
 const path = require("path");
 const paths = require("./paths");
 
+const { env } = process;
+
 delete require.cache[require.resolve("./paths")];
 
-if (!process.env.NODE_ENV) {
+if (!env.NODE_ENV) {
   throw new Error(
-    "The process.env.NODE_ENV environment variable is required but was not specified."
+    "The env.NODE_ENV environment variable is required but was not specified."
   );
 }
 
 const dotenvFiles = [
-  `${paths.dotenv}.${process.env.NODE_ENV}.local`,
-  `${paths.dotenv}.${process.env.NODE_ENV}`,
-  process.env.NODE_ENV !== "test" && `${paths.dotenv}.local`,
+  `${paths.dotenv}.${env.NODE_ENV}.local`,
+  `${paths.dotenv}.${env.NODE_ENV}`,
+  env.NODE_ENV !== "test" && `${paths.dotenv}.local`,
   paths.dotenv
 ].filter(Boolean);
 
@@ -26,7 +28,7 @@ dotenvFiles.forEach(dotenvFile => {
 });
 
 const appDirectory = fs.realpathSync(process.cwd());
-process.env.NODE_PATH = (process.env.NODE_PATH || "")
+env.NODE_PATH = (env.NODE_PATH || "")
   .split(path.delimiter)
   .filter(folder => folder && !path.isAbsolute(folder))
   .map(folder => path.resolve(appDirectory, folder))
@@ -34,9 +36,10 @@ process.env.NODE_PATH = (process.env.NODE_PATH || "")
 
 module.exports = () => {
   const raw = {
-    PORT: process.env.PORT || 8500,
-    NODE_ENV: process.env.NODE_ENV || "development",
-    HOST: process.env.HOST || "http://localhost"
+    PORT: env.PORT || 3333,
+    NODE_ENV: env.NODE_ENV || "development",
+    HOST: env.HOST || "http://localhost",
+    BROWSER_API_URI: env.BROWSER_API_URI || "http://localhost:4343"
   };
 
   // Stringify all values so we can feed into Webpack DefinePlugin

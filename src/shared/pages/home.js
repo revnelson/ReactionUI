@@ -28,9 +28,6 @@ const Home = ({ changeLocaleMutation, t }) => {
         <button value="en_US" onClick={setLanguage}>
           English
         </button>
-        <button value="en_US" onClick={callServer}>
-          Call API
-        </button>
       </p>
     </Wrapper>
   );

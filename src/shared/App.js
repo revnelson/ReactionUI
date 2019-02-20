@@ -23,7 +23,6 @@ class App extends React.Component {
   componentWillMount() {
     !isServer && checkAuth();
   }
-
   render() {
     const { lang } = this.props;
     return (
