@@ -1,3 +1,14 @@
+const path = require("path");
+const fs = require("fs");
+
+const lessToJs = require("less-vars-to-js");
+const themeVariables = lessToJs(
+  fs.readFileSync(
+    path.join(__dirname, "../../src/shared/style/antd.less"),
+    "utf8"
+  )
+);
+
 const babelLoader = {
   test: /\.(js|jsx|mjs)$/,
   exclude: /node_modules/,
@@ -69,14 +80,38 @@ const apolloFix = {
   type: "javascript/auto"
 };
 
+const lessLoader = {
+  test: /\.less$/,
+  use: [
+    {
+      loader: "style-loader"
+    },
+    {
+      loader: "css-loader"
+    },
+    {
+      loader: "less-loader",
+      options: {
+        paths: [path.join(__dirname, "../../node_modules")]
+      }
+    }
+  ]
+};
+
 const client = [
   {
-    oneOf: [babelLoader, urlLoaderClient, fileLoaderClient, apolloFix]
+    oneOf: [
+      babelLoader,
+      urlLoaderClient,
+      fileLoaderClient,
+      apolloFix,
+      lessLoader
+    ]
   }
 ];
 const server = [
   {
-    oneOf: [babelLoader, urlLoaderServer, fileLoaderServer]
+    oneOf: [babelLoader, urlLoaderServer, fileLoaderServer, lessLoader]
   }
 ];
 

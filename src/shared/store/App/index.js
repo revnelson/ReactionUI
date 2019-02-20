@@ -23,12 +23,13 @@ const appQueryHandler = {
 };
 
 const handler = [graphql(queries["appQuery"], appQueryHandler)];
-const graphs = Object.keys(mutations).map(query =>
-  graphql(mutations[query], { name: query })
+
+const graphMutations = Object.keys(mutations).map(mutation =>
+  graphql(mutations[mutation], { name: mutation })
 );
 
-const toCompose = handler.concat(graphs);
+const toCompose = handler.concat(graphMutations);
 
 const withAppStore = compose(...toCompose);
 
-export { appStore, withAppStore };
+export { appStore, mutations, queries, withAppStore };

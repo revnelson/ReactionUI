@@ -5,21 +5,21 @@ import * as queries from "./queries";
 import * as mutations from "./mutations";
 import * as resolvers from "./resolvers";
 
-const langStore = {
+const authStore = {
   defaults,
   mutations: {
     ...resolvers
   }
 };
 
-const langQueryHandler = {
-  props: ({ ownProps, data: { lang = {} } }) => ({
+const authQueryHandler = {
+  props: ({ ownProps, data: { auth = {} } }) => ({
     ...ownProps,
-    lang
+    auth
   })
 };
 
-const handler = [graphql(queries["langQuery"], langQueryHandler)];
+const handler = [graphql(queries["authQuery"], authQueryHandler)];
 
 const graphMutations = Object.keys(mutations).map(mutation =>
   graphql(mutations[mutation], { name: mutation })
@@ -27,6 +27,6 @@ const graphMutations = Object.keys(mutations).map(mutation =>
 
 const toCompose = handler.concat(graphMutations);
 
-const withLangStore = compose(...toCompose);
+const withAuthStore = compose(...toCompose);
 
-export { langStore, mutations, queries, withLangStore };
+export { authStore, mutations, queries, withAuthStore };

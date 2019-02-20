@@ -1,49 +1,23 @@
 import { appStore } from "../store/App";
 import { langStore } from "../store/Lang";
+import { authStore } from "../store/Auth";
 import { withClientState } from "apollo-link-state";
-import flow from "lodash/fp/flow";
-import assignIn from "lodash/fp/assignIn";
-import map from "lodash/fp/map";
-import reduce from "lodash/fp/reduce";
-const reduceWithDefault = reduce.convert({ cap: false });
-
-/**
- * At a given attribute this will merge all objects
- * in a list of objects found at that attribute.
- *
- * Example
- * const objectList = [
- *   {defaults: {x: true}},
- *   {defaults: {y: "foo"}},
- *   {defaults: {z: 123}}
- * ]
- *
- * // returns {x: true, y: "foo", z: 123}
- * mergeGet("defaults")(objectList)
- */
-const mergeGet = attributeName =>
-  flow(
-    // pick a single attribute from each object
-    map(attributeName),
-    // merge all values into a single object
-    reduceWithDefault(assignIn, {})
-  );
 
 /**
  * Local Data Stores
  */
-const STORES = [appStore, langStore];
+const STORES = [appStore, langStore, authStore];
 
 /**
  * Map the Mutation handlers and Default Values of our local state to
  * the Apollo cache.
  */
-const clientStore = cache => {
+export const clientStore = cache => {
   // Merge all defaults
-  const defaults = mergeGet("defaults")(STORES);
+  const defaults = Object.assign(...STORES.map(store => store.defaults));
 
   // Merge all mutations
-  const mutations = mergeGet("mutations")(STORES);
+  const mutations = Object.assign(...STORES.map(store => store.mutations));
 
   // Construct the Client State with the given mutations and defaults
   return withClientState({
@@ -58,9 +32,3 @@ const clientStore = cache => {
     }
   });
 };
-
-/**
- * Export
- */
-
-export default clientStore;

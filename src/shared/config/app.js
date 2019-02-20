@@ -1,4 +1,4 @@
 export const appConfig = {
-  siteName: "Metronic",
+  siteName: "ReactionUI",
   style: 8
 };

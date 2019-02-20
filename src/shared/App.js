@@ -1,11 +1,12 @@
-import * as React from "react";
+import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Helmet from "react-helmet-async";
-import { GlobalStyles } from "./style/global";
 import importComponent from "react-imported-component";
-import LoadingComponent from "./pages/loading";
-import ErrorComponent from "./pages/error";
+import { GlobalStyles } from "./style/global";
+import LoadingComponent from "./components/loading";
+import ErrorComponent from "./components/error";
 import Layout from "./containers/layout";
+import { checkAuth, isServer } from "./lib";
 import { withLangStore } from "./store/Lang";
 
 const Home = importComponent(() => import("./pages/home"), {
@@ -18,20 +19,27 @@ const About = importComponent(() => import("./pages/about"), {
   ErrorComponent
 });
 
-const App = ({ lang }) => {
-  return (
-    <div>
-      <Helmet htmlAttributes={{ lang: lang.locale }} />
-      <GlobalStyles />
-      <Layout>
-        <Switch>
-          <Route exact path="/" component={() => <Home />} />
-          <Route path="/about" component={() => <About />} />
-          <Redirect to="/" />
-        </Switch>
-      </Layout>
-    </div>
-  );
-};
+class App extends React.Component {
+  componentWillMount() {
+    !isServer && checkAuth();
+  }
+
+  render() {
+    const { lang } = this.props;
+    return (
+      <React.Fragment>
+        <Helmet htmlAttributes={{ lang: lang.locale }} />
+        <GlobalStyles />
+        <Layout>
+          <Switch>
+            <Route exact path="/" component={() => <Home />} />
+            <Route path="/about" component={() => <About />} />
+            <Redirect to="/" />
+          </Switch>
+        </Layout>
+      </React.Fragment>
+    );
+  }
+}
 
 export default withLangStore(App);

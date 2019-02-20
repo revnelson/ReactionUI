@@ -20,12 +20,13 @@ const {{camelCase storeName}}QueryHandler = {
 };
 
 const handler = [graphql(queries["{{camelCase storeName}}Query"], {{camelCase storeName}}QueryHandler)];
-const graphs = Object.keys(mutations).map(query =>
-  graphql(mutations[query], { name: query })
+
+const graphMutations = Object.keys(mutations).map(mutation =>
+  graphql(mutations[mutation], { name: mutation })
 );
 
-const toCompose = handler.concat(graphs);
+const toCompose = handler.concat(graphMutations);
 
 const with{{pascalCase storeName}}Store = compose(...toCompose);
 
-export { {{camelCase storeName}}Store, with{{pascalCase storeName}}Store };
+export { {{camelCase storeName}}Store, mutations, queries, with{{pascalCase storeName}}Store };

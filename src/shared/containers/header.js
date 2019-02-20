@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { appConfig } from "../config";
 import { NavLink } from "react-router-dom";
 
 const Header = styled.header`
@@ -36,7 +37,7 @@ const MenuLink = styled.li`
 
 export default () => (
   <Header>
-    <Brand>Stream all the things!</Brand>
+    <Brand>{appConfig.siteName}</Brand>
     <Menu>
       <MenuLink>
         <NavLink to="/" exact activeClassName="active">
