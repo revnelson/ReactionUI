@@ -6,21 +6,18 @@ import IntlProvider from "../shared/i18n/IntlProvider";
 import importedComponents from "./imported";
 import { HelmetProvider } from "react-helmet-async";
 import { rehydrateMarks } from "react-imported-component";
-import { initApollo } from "../shared/lib";
-import { ApolloProvider } from "react-apollo";
+import { ApolloPersist } from "./apolloBrowser";
 
-const initialState = window.__APOLLO_STATE__;
-const client = initApollo(initialState);
 const element = document.getElementById("app");
 const app = (
   <HelmetProvider>
-    <ApolloProvider client={client}>
+    <ApolloPersist>
       <IntlProvider>
         <BrowserRouter>
           <App />
         </BrowserRouter>
       </IntlProvider>
-    </ApolloProvider>
+    </ApolloPersist>
   </HelmetProvider>
 );
 

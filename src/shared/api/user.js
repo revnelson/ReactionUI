@@ -22,6 +22,17 @@ export const fetchUserQuery = gql`
   }
 `;
 
+export const checkAuthQuery = gql`
+  query {
+    checkAuth {
+      id
+      username
+      createdAt
+      updatedAt
+    }
+  }
+`;
+
 export const registerUserMutation = gql`
   mutation registerUser($username: String!, $password: String!) {
     registerUser(username: $username, password: $password) {
@@ -44,5 +55,11 @@ export const loginUserMutation = gql`
         updatedAt
       }
     }
+  }
+`;
+
+export const logoutUserMutation = gql`
+  mutation logoutUser {
+    logoutUser
   }
 `;

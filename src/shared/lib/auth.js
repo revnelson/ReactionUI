@@ -1,11 +1,18 @@
 import { ApolloClient as client } from "apollo-client";
-import Cookies from "js-cookie";
+import cookies from "cookie";
+import jwt from "jsonwebtoken";
+import { queries, mutations } from "../store/Auth";
+import { checkAuthQuery } from "../api";
 import { appConfig } from "../config";
-import { mutations } from "../store/Auth";
 
-export const checkAuth = () => {
-  const userId = Cookies.getJSON(appConfig.siteName) || "";
-  userId && setUser({ user: { userId } });
+export const checkAuth = (client, data) => {
+  if (data === "clear") return clearUser(client);
+  const userId = client.readQuery({ query: queries.authQuery }).auth.id;
+  !userId &&
+    client.query({ query: checkAuthQuery }).then(({ data }) => {
+      const user = data.checkAuth;
+      user && setUser(client, user);
+    });
 };
 
 export const loginUser = async (username, password) => {
@@ -15,18 +22,29 @@ export const loginUser = async (username, password) => {
     variables: { username, password }
   });
   const { token, user } = data;
-  Cookies.set(appConfig.siteName, token);
   setUser(user);
 };
 
 export const logoutUser = () => {
-  Cookies.remove(appConfig.siteName);
   setUser({});
 };
 
-export const setUser = user => {
+export const setUser = (client, user) => {
   client.mutate({
     mutation: mutations.setUserMutation,
     variables: { user }
   });
+};
+
+export const clearUser = client => {
+  client.mutate({ mutations: clearUserMutation });
+};
+
+export const checkCookie = cookie => {
+  const token = cookies.parse(cookie || "")[appConfig.siteName] || "";
+  if (token) {
+    const { iat, exp, ...user } = jwt.decode(token);
+    return { user, token };
+  }
+  return { user: "", token: "" };
 };

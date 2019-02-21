@@ -1,12 +1,10 @@
 import express from "express";
-import cors from "cors";
+import compression from "compression";
 import path from "path";
 import chalk from "chalk";
 import manifestHelpers from "./middleware/manifest-helpers";
 import serverRender from "./render";
 import paths from "../../config/paths";
-import compression from "compression";
-import morgan from "morgan";
 
 require("dotenv").config();
 
@@ -24,11 +22,9 @@ if (process.env.NODE_ENV === "development") {
   });
 }
 
-app.use(morgan("combined"));
+app.use(compression({ level: 6 }));
 
-app.use(compression({ level: 9 }));
-
-app.use(cors());
+app.use(express.json());
 
 const manifestPath = path.join(paths.clientBuild, paths.publicPath);
 

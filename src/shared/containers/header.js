@@ -2,8 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import { appConfig } from "../config";
 import { NavLink } from "react-router-dom";
+import { Mutation, ApolloConsumer } from "react-apollo";
+import { checkAuth } from "../lib";
+import { loginUserMutation, logoutUserMutation } from "../api";
+import { mutations, withAuthStore } from "../store/Auth";
+import { clearUser } from "../store/Auth/resolvers";
 
-const Header = styled.header`
+const HeaderEl = styled.header`
   z-index: 100;
   position: fixed;
   top: 0;
@@ -35,8 +40,8 @@ const MenuLink = styled.li`
   text-decoration: none;
 `;
 
-export default () => (
-  <Header>
+const HeaderShell = ({ auth }) => (
+  <HeaderEl>
     <Brand>{appConfig.siteName}</Brand>
     <Menu>
       <MenuLink>
@@ -49,6 +54,56 @@ export default () => (
           About
         </NavLink>
       </MenuLink>
+      {!auth.id && (
+        <MenuLink>
+          <Mutation mutation={loginUserMutation}>
+            {(loginUser, { client, loading }) => {
+              return (
+                <NavLink
+                  onClick={e => {
+                    loginUser({
+                      variables: { username: "michael", password: "nelson" }
+                    })
+                      .then(({ data }) => {
+                        const { user } = data.loginUser;
+                        console.log(user);
+                        client.mutate({
+                          mutation: mutations.setUserMutation,
+                          variables: { user }
+                        });
+                      })
+                      .catch(e => console.log(e));
+                  }}
+                  to=""
+                >
+                  {loading ? "Logging in..." : "Log In"}
+                </NavLink>
+              );
+            }}
+          </Mutation>
+        </MenuLink>
+      )}
+      {auth.id && (
+        <MenuLink>
+          <Mutation mutation={logoutUserMutation}>
+            {(logoutUser, { client }) => {
+              return (
+                <NavLink
+                  onClick={e => {
+                    logoutUser();
+                    client.mutate({ mutation: mutations.clearUserMutation });
+                  }}
+                  to=""
+                >
+                  Log Out
+                </NavLink>
+              );
+            }}
+          </Mutation>
+        </MenuLink>
+      )}
     </Menu>
-  </Header>
+  </HeaderEl>
 );
+
+export const Header = withAuthStore(HeaderShell);

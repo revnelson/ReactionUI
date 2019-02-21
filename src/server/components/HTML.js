@@ -3,8 +3,7 @@ import React from "react";
 export default class HTML extends React.Component {
   static defaultProps = {
     css: [],
-    scripts: [],
-    state: "{}"
+    scripts: []
   };
 
   render() {
@@ -23,15 +22,17 @@ export default class HTML extends React.Component {
           })}
         </head>
         <body>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `window.__APOLLO_USER__=${JSON.stringify(
+                apolloData
+              ).replace(/</g, "\\u003c")};`
+            }}
+          />
           <div id="app" dangerouslySetInnerHTML={{ __html: children }} />
           {scripts.map(src => {
             return <script key={src} src={src} />;
           })}
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `window.__APOLLO_STATE__=${JSON.stringify(apolloData)}`
-            }}
-          />
         </body>
       </html>
     );

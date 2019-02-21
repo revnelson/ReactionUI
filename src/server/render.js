@@ -1,30 +1,34 @@
 import React from "react";
 import { renderToString, renderToNodeStream } from "react-dom/server";
 import { StaticRouter } from "react-router-dom";
+import { printDrainHydrateMarks } from "react-imported-component";
+import log from "llog";
+import { HelmetProvider } from "react-helmet-async";
+import { ApolloProvider, getDataFromTree } from "react-apollo";
 import { ServerStyleSheet } from "styled-components";
 import IntlProvider from "../shared/i18n/IntlProvider";
 import HTML from "./components/HTML";
 import App from "../shared/App";
-import { HelmetProvider } from "react-helmet-async";
-import { ApolloProvider, getDataFromTree } from "react-apollo";
-import { initApollo } from "../shared/lib";
-import { printDrainHydrateMarks } from "react-imported-component";
-import log from "llog";
+import { apolloServerInit, checkCookie } from "../shared/lib";
+import { ApolloUserInjector } from "./apolloServer";
 
 const serverRenderer = (req, res) => {
   let helmetContext = {};
   let routerContext = {};
+  const { token, user } = checkCookie(req.headers.cookie);
+  const client = apolloServerInit(token);
   const sheet = new ServerStyleSheet();
-  const apolloClient = initApollo();
   const content = sheet.collectStyles(
-    <ApolloProvider client={apolloClient}>
-      <HelmetProvider context={helmetContext}>
-        <StaticRouter location={req.url} context={routerContext}>
-          <IntlProvider>
-            <App />
-          </IntlProvider>
-        </StaticRouter>
-      </HelmetProvider>
+    <ApolloProvider client={client}>
+      <ApolloUserInjector user={user}>
+        <HelmetProvider context={helmetContext}>
+          <StaticRouter location={req.url} context={routerContext}>
+            <IntlProvider>
+              <App />
+            </IntlProvider>
+          </StaticRouter>
+        </HelmetProvider>
+      </ApolloUserInjector>
     </ApolloProvider>
   );
 
@@ -33,8 +37,6 @@ const serverRenderer = (req, res) => {
       if (routerContext.url) {
         res.redirect(301, routerContext.url);
       } else {
-        const data = apolloClient.extract();
-
         const { helmet } = helmetContext;
 
         const html =
@@ -50,7 +52,7 @@ const serverRenderer = (req, res) => {
                 res.locals.assetPath("vendor.js")
               ]}
               helmet={helmet}
-              apolloData={data}
+              apolloData={user}
             />
           );
         const appString = '<div id="app">';

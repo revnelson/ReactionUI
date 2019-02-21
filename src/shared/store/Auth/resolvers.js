@@ -1,13 +1,30 @@
 import { authQuery } from "./queries";
 
-export const setUserId = (_, { user }, { cache }) => {
-  const currentAuth = cache.readQuery({ query: authQuery }).auth;
-
+export const setUser = (_, { user }, { cache }) => {
+  console.log("Resolver: ", user);
   const data = {
     auth: {
-      userId: user.userId || currentAuth.userId,
-      email: user.email || currentAuth.email,
-      name: user.name || currentAuth.name,
+      id: user.id,
+      username: user.username || "",
+      createdAt: user.createdAt || "",
+      updatedAt: user.updatedAt || "",
+      name: user.name || "",
+      __typename: "auth"
+    }
+  };
+
+  cache.writeData({ data });
+  return null;
+};
+
+export const clearUser = (_, none, { cache }) => {
+  const data = {
+    auth: {
+      id: "",
+      username: "",
+      createdAt: "",
+      updatedAt: "",
+      name: "",
       __typename: "auth"
     }
   };

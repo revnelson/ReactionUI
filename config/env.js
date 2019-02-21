@@ -39,7 +39,8 @@ module.exports = () => {
     PORT: env.PORT || 3333,
     NODE_ENV: env.NODE_ENV || "development",
     HOST: env.HOST || "http://localhost",
-    BROWSER_API_URI: env.BROWSER_API_URI || "http://localhost:4343"
+    BROWSER_API_URI: env.BROWSER_API_URI || "http://localhost:4343",
+    PERSIST_NAME: env.PERSIST_NAME || "apollo-cache-persist"
   };
 
   // Stringify all values so we can feed into Webpack DefinePlugin

@@ -1,7 +1,9 @@
 export const defaults = {
   auth: {
-    userId: "",
-    email: "",
+    id: "",
+    username: "",
+    createdAt: "",
+    updatedAt: "",
     name: "",
     __typename: "auth"
   }

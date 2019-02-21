@@ -8,6 +8,8 @@ import ErrorComponent from "./components/error";
 import Layout from "./containers/layout";
 import { checkAuth, isServer } from "./lib";
 import { withLangStore } from "./store/Lang";
+import { withApollo } from "react-apollo";
+import { withAuthStore } from "./store/Auth";
 
 const Home = importComponent(() => import("./pages/home"), {
   LoadingComponent,
@@ -20,11 +22,8 @@ const About = importComponent(() => import("./pages/about"), {
 });
 
 class App extends React.Component {
-  componentWillMount() {
-    !isServer && checkAuth();
-  }
   render() {
-    const { lang } = this.props;
+    const { auth, lang } = this.props;
     return (
       <React.Fragment>
         <Helmet htmlAttributes={{ lang: lang.locale }} />
@@ -35,10 +34,11 @@ class App extends React.Component {
             <Route path="/about" component={() => <About />} />
             <Redirect to="/" />
           </Switch>
+          {auth.id && "Ya logged in!"}
         </Layout>
       </React.Fragment>
     );
   }
 }
 
-export default withLangStore(App);
+export default withLangStore(withAuthStore(App));
