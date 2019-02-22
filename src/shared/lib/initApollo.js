@@ -11,7 +11,7 @@ const { BROWSER_API_URI, PERSIST_NAME, SERVER_API_URI } = process.env;
 export const apolloBrowserInit = async user => {
   const serverLink = createHttpLink({
     uri: BROWSER_API_URI,
-    credentials: "same-origin"
+    credentials: "include"
   });
 
   const link = ApolloLink.from([clientStore(cache), serverLink]);
