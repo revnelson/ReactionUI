@@ -8,7 +8,7 @@ export default class HTML extends React.Component {
 
   render() {
     // const head = Helmet.renderStatic();
-    const { children, apolloData, css, helmet, scripts } = this.props;
+    const { children, apolloData, css, helmet, locals, scripts } = this.props;
     return (
       <html lang="">
         <head>
@@ -17,7 +17,7 @@ export default class HTML extends React.Component {
           {helmet.title.toComponent()}
           {helmet.meta.toComponent()}
           {helmet.link.toComponent()}
-          {css.map(href => {
+          {locals.getStylesheets().map(href => {
             return <link key={href} rel="stylesheet" href={href} />;
           })}
         </head>
@@ -30,7 +30,7 @@ export default class HTML extends React.Component {
             }}
           />
           <div id="app" dangerouslySetInnerHTML={{ __html: children }} />
-          {scripts.map(src => {
+          {locals.getJavascripts().map(src => {
             return <script key={src} src={src} />;
           })}
         </body>

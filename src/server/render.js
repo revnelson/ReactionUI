@@ -42,18 +42,7 @@ const serverRenderer = (req, res) => {
         const html =
           "<!DOCTYPE html>" +
           renderToString(
-            <HTML
-              css={[
-                res.locals.assetPath("bundle.css"),
-                res.locals.assetPath("vendor.css")
-              ]}
-              scripts={[
-                res.locals.assetPath("bundle.js"),
-                res.locals.assetPath("vendor.js")
-              ]}
-              helmet={helmet}
-              apolloData={user}
-            />
+            <HTML locals={res.locals} helmet={helmet} apolloData={user} />
           );
         const appString = '<div id="app">';
         const splitter = "###SPLIT###";

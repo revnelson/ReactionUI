@@ -6,7 +6,7 @@ import { createHttpLink } from "apollo-link-http";
 import fetch from "isomorphic-unfetch";
 import { clientStore } from "./apolloLinkState";
 
-const { BROWSER_API_URI, PERSIST_NAME, SERVER_API_URI } = process.env;
+const { BROWSER_API_URI, SERVER_API_URI, SITE_NAME } = process.env;
 
 export const apolloBrowserInit = async user => {
   const serverLink = createHttpLink({
@@ -21,12 +21,12 @@ export const apolloBrowserInit = async user => {
   const persistor = new CachePersistor({
     cache,
     storage: window.localStorage,
-    key: PERSIST_NAME
+    key: SITE_NAME
   });
 
   const persistedJSON =
-    window.localStorage[PERSIST_NAME] &&
-    JSON.parse(window.localStorage[PERSIST_NAME]);
+    window.localStorage[SITE_NAME] &&
+    JSON.parse(window.localStorage[SITE_NAME]);
 
   const rootQuery = (persistedJSON && persistedJSON.ROOT_QUERY) || "";
   const authQuery = (rootQuery && rootQuery.auth) || "";
@@ -34,7 +34,9 @@ export const apolloBrowserInit = async user => {
   const persistedAuthStore = (authQueryId && persistedJSON[authQueryId]) || "";
   const persistedId = (persistedAuthStore && persistedAuthStore.id) || "";
 
-  user.id === persistedId ? await persistor.restore() : await persistor.purge();
+  (!user.id && persistedId) || (persistedId && user.id !== persistedId)
+    ? await persistor.purge()
+    : await persistor.restore();
 
   return new ApolloClient({
     ssrMode: false,

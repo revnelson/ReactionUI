@@ -51,7 +51,7 @@ module.exports = {
     }
   },
   stats: {
-    cached: false,
+    cached: true,
     cachedAssets: false,
     chunks: false,
     chunkModules: false,

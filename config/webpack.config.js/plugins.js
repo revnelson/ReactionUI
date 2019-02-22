@@ -2,7 +2,7 @@ const webpack = require("webpack");
 const ManifestPlugin = require("webpack-manifest-plugin");
 const CaseSensitivePathsPlugin = require("case-sensitive-paths-webpack-plugin");
 const CompressionPlugin = require("compression-webpack-plugin");
-// const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const env = require("../env")();
 
@@ -10,10 +10,7 @@ const shared = [];
 
 const client = [
   // TODO: add client side only mode
-  // new HtmlWebpackPlugin({
-  //     inject: true,
-  //     template: paths.appHtml,
-  // }),
+  new HtmlWebpackPlugin({ title: env.stringified.SITE_NAME }),
   new CaseSensitivePathsPlugin(),
   new webpack.DefinePlugin(env.stringified),
   new webpack.DefinePlugin({
