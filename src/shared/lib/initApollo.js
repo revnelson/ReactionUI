@@ -52,7 +52,8 @@ export const apolloServerInit = token => {
     uri: SERVER_API_URI,
     headers: {
       Authorization: token ? token : ""
-    }
+    },
+    credentials: "include"
   });
   const cache = new InMemoryCache();
 
