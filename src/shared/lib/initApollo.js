@@ -11,7 +11,8 @@ const { BROWSER_API_URI, SERVER_API_URI, SITE_NAME } = process.env;
 export const apolloBrowserInit = async user => {
   const serverLink = createHttpLink({
     uri: BROWSER_API_URI,
-    credentials: "include"
+    credentials: "include",
+    fetch
   });
 
   const link = ApolloLink.from([clientStore(cache), serverLink]);
@@ -51,7 +52,6 @@ export const apolloServerInit = token => {
     headers: {
       Authorization: token ? token : ""
     },
-    credentials: "include",
     fetch
   });
   const cache = new InMemoryCache();

@@ -2,6 +2,7 @@ import express from "express";
 import compression from "compression";
 import path from "path";
 import chalk from "chalk";
+import morgan from "morgan";
 import manifestHelpers from "./middleware/manifest-helpers";
 import serverRender from "./render";
 import paths from "../../config/paths";
@@ -25,6 +26,8 @@ if (process.env.NODE_ENV === "development") {
 app.use(compression({ level: 6 }));
 
 app.use(express.json());
+
+app.use(morgan("combined"));
 
 const manifestPath = path.join(paths.clientBuild, paths.publicPath);
 
