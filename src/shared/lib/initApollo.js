@@ -46,14 +46,13 @@ export const apolloBrowserInit = async user => {
 };
 
 export const apolloServerInit = token => {
-  // Polyfill fetch() on the server (used by apollo-client)
-  global.fetch = fetch;
   const serverLink = createHttpLink({
     uri: SERVER_API_URI,
     headers: {
       Authorization: token ? token : ""
     },
-    credentials: "include"
+    credentials: "include",
+    fetch
   });
   const cache = new InMemoryCache();
 
