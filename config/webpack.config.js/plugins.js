@@ -10,7 +10,7 @@ const shared = [];
 
 const client = [
   // TODO: add client side only mode
-  new HtmlWebpackPlugin({ title: env.stringified.SITE_NAME }),
+  // new HtmlWebpackPlugin({ title: env.stringified.SITE_NAME }),
   new CaseSensitivePathsPlugin(),
   new webpack.DefinePlugin(env.stringified),
   new webpack.DefinePlugin({

@@ -12,7 +12,7 @@ export const fetchUsersQuery = gql`
 `;
 
 export const fetchUserQuery = gql`
-  query {
+  query fetchUser {
     getUser {
       id
       username

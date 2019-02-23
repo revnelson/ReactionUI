@@ -4,6 +4,9 @@ import Page from "../lib/page";
 import { Wrapper } from "../style/wrapper";
 import { ReactComponent as ReactLogo } from "../assets/react.svg";
 import { withLangStore } from "../store/Lang";
+import { Query } from "react-apollo";
+import { fetchUserQuery } from "../api";
+import { Spin, Alert } from "antd";
 
 const Home = ({ changeLocaleMutation, t }) => {
   const setLanguage = e => {
@@ -29,6 +32,27 @@ const Home = ({ changeLocaleMutation, t }) => {
           English
         </button>
       </p>
+      <Query query={fetchUserQuery}>
+        {({ loading, error, data }) => {
+          if (loading) return null;
+          if (error) return `Error!: ${error}`;
+          return (
+            <Spin spinning={!loading}>
+              <Alert
+                description="This is the about page"
+                message={
+                  loading
+                    ? "Loading..."
+                    : data && data.getUser
+                    ? `Hello ${data.getUser.username}!`
+                    : "Error fetching users"
+                }
+                type="info"
+              />
+            </Spin>
+          );
+        }}
+      </Query>
     </Wrapper>
   );
 };
