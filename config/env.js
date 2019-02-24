@@ -40,6 +40,7 @@ module.exports = () => {
     NODE_ENV: env.NODE_ENV || "development",
     HOST: env.HOST || "http://localhost/",
     BROWSER_API_URI: env.BROWSER_API_URI || "http://localhost:4343/",
+    SERVER_API_URI: env.BROWSER_API_URI || "http://localhost:4343/",
     SITE_NAME: env.SITE_NAME || "ReactionUI"
   };
 

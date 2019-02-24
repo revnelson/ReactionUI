@@ -2,7 +2,7 @@ const webpack = require("webpack");
 const ManifestPlugin = require("webpack-manifest-plugin");
 const CaseSensitivePathsPlugin = require("case-sensitive-paths-webpack-plugin");
 const CompressionPlugin = require("compression-webpack-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+// const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const env = require("../env")();
 
@@ -28,7 +28,8 @@ const client = [
 const server = [
   new webpack.DefinePlugin({
     __SERVER__: "true",
-    __BROWSER__: "false"
+    __BROWSER__: "false",
+    "process.env.SERVER_API_URI": env.raw.SERVER_API_URI
   })
 ];
 
