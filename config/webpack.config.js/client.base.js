@@ -12,7 +12,6 @@ module.exports = {
   output: {
     path: paths.clientBuild,
     filename: "bundle.js",
-    publicPath: paths.publicPath,
     chunkFilename: `${paths.publicPath.slice(
       1
     )}scripts/[name].[chunkhash:8].chunk.js`
