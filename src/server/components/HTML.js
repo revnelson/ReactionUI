@@ -8,7 +8,7 @@ export default class HTML extends React.Component {
 
   render() {
     // const head = Helmet.renderStatic();
-    const { children, apolloData, css, helmet, locals, scripts } = this.props;
+    const { children, helmet, locals } = this.props;
     return (
       <html lang="">
         <head>
@@ -22,13 +22,6 @@ export default class HTML extends React.Component {
           })}
         </head>
         <body>
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `window.__APOLLO_USER__=${JSON.stringify(
-                apolloData
-              ).replace(/</g, "\\u003c")};`
-            }}
-          />
           <div id="app" dangerouslySetInnerHTML={{ __html: children }} />
           {locals.getJavascripts().map(src => {
             return <script key={src} src={src} />;

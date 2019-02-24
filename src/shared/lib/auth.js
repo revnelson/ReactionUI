@@ -1,4 +1,3 @@
-import { ApolloClient as client } from "apollo-client";
 import cookies from "cookie";
 import jwt from "jsonwebtoken";
 import { queries, mutations } from "../store/Auth";
@@ -15,7 +14,7 @@ export const checkAuth = (client, data) => {
     });
 };
 
-export const loginUser = async (username, password) => {
+export const loginUser = async (client, username, password) => {
   // TODO - validate input
   const data = await client.mutate({
     mutation: mutations.loginUserMutation,
@@ -42,9 +41,6 @@ export const clearUser = client => {
 
 export const checkCookie = cookie => {
   const token = cookies.parse(cookie || "")[appConfig.siteName] || "";
-  if (token) {
-    const { iat, exp, ...user } = jwt.decode(token);
-    return { user, token };
-  }
-  return { user: "", token: "" };
+  if (token) return token;
+  return null;
 };

@@ -8,7 +8,7 @@ import { ReactComponent as ReactLogo } from "../assets/react.svg";
 import { withLangStore } from "../store/Lang";
 import { fetchUserQuery } from "../api";
 
-const Home = ({ changeLocaleMutation, t }) => {
+const Home = ({ auth, changeLocaleMutation, t }) => {
   const setLanguage = e => {
     const locale = e.target.value;
     changeLocaleMutation({ variables: { locale } });
@@ -32,27 +32,29 @@ const Home = ({ changeLocaleMutation, t }) => {
           English
         </button>
       </p>
-      <Query query={fetchUserQuery}>
-        {({ loading, error, data }) => {
-          if (loading) return null;
-          if (error) return `Error!: ${error}`;
-          return (
-            <Spin spinning={!loading}>
-              <Alert
-                description="This is the about page"
-                message={
-                  loading
-                    ? "Loading..."
-                    : data && data.getUser
-                    ? `Hello ${data.getUser.username}!`
-                    : "Error fetching users"
-                }
-                type="info"
-              />
-            </Spin>
-          );
-        }}
-      </Query>
+      {auth.id && (
+        <Query query={fetchUserQuery}>
+          {({ loading, error, data }) => {
+            if (loading) return null;
+            if (error) return `Error!: ${error}`;
+            return (
+              <Spin spinning={!loading}>
+                <Alert
+                  description="This is the about page"
+                  message={
+                    loading
+                      ? "Loading..."
+                      : data && data.getUser
+                      ? `Hello ${data.getUser.username}!`
+                      : "Error fetching users"
+                  }
+                  type="info"
+                />
+              </Spin>
+            );
+          }}
+        </Query>
+      )}
     </Wrapper>
   );
 };

@@ -46,17 +46,19 @@ const requestLink = new ApolloLink(
     })
 );
 
-export const apolloBrowserInit = async user => {
+export const apolloBrowserInit = async () => {
   const serverLink = new HttpLink({
     uri: BROWSER_API_URI,
     credentials: "include",
     fetch
   });
 
+  const stateLink = clientStore(cache);
+
   const link = ApolloLink.from([
     errorMiddleware,
     requestLink,
-    clientStore(cache),
+    stateLink,
     serverLink
   ]);
 
@@ -68,25 +70,17 @@ export const apolloBrowserInit = async user => {
     key: SITE_NAME
   });
 
-  const persistedJSON =
-    window.localStorage[SITE_NAME] &&
-    JSON.parse(window.localStorage[SITE_NAME]);
+  await persistor.restore();
 
-  const rootQuery = (persistedJSON && persistedJSON.ROOT_QUERY) || "";
-  const authQuery = (rootQuery && rootQuery.auth) || "";
-  const authQueryId = (authQuery && authQuery.id) || "";
-  const persistedAuthStore = (authQueryId && persistedJSON[authQueryId]) || "";
-  const persistedId = (persistedAuthStore && persistedAuthStore.id) || "";
-
-  (!user.id && persistedId) || (persistedId && user.id !== persistedId)
-    ? await persistor.purge()
-    : await persistor.restore();
-
-  return new ApolloClient({
+  const client = new ApolloClient({
     ssrMode: false,
     link,
     cache
   });
+
+  client.onResetStore(stateLink.writeDefaults);
+
+  return client;
 };
 
 export const apolloServerInit = token => {

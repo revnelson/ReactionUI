@@ -1,20 +1,19 @@
 import React from "react";
 import { ApolloProvider } from "react-apollo";
-import { apolloBrowserInit, checkCookie } from "../shared/lib";
+import { apolloBrowserInit } from "../shared/lib";
 import { mutations } from "../shared/store/Auth";
+import { checkAuthQuery } from "../shared/api";
 
 class PersistorContainer extends React.Component {
   state = {
     client: null,
-    loaded: false,
-    user: false
+    loaded: false
   };
 
   // check the users auth cookie and set the global user state
-  checkAuthCookie = (client, user) => {
-    // do auth stuff ... and then
-    checkCookie();
-    // const user = {};
+  checkAuth = async client => {
+    const { data } = await client.query({ query: checkAuthQuery });
+    const { user } = data && data.checkAuth ? data.checkAuth : "";
     user &&
       client.mutate({
         mutation: mutations.setUserMutation,
@@ -23,11 +22,10 @@ class PersistorContainer extends React.Component {
   };
 
   async componentDidMount() {
-    const user = window.__APOLLO_USER__ || "";
     try {
-      const client = await apolloBrowserInit(user);
+      const client = await apolloBrowserInit();
 
-      await this.checkAuthCookie(client, user);
+      await this.checkAuth(client);
 
       await this.setState({
         client,
@@ -39,10 +37,7 @@ class PersistorContainer extends React.Component {
   }
 
   render() {
-    const { client, loaded, user } = this.state;
-    if (loaded && !user) {
-      this.checkAuthCookie(client);
-    }
+    const { client, loaded } = this.state;
     if (!loaded) {
       return <div>Loading...</div>;
     }

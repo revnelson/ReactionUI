@@ -2,11 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import { appConfig } from "../config";
 import { NavLink } from "react-router-dom";
-import { Mutation, ApolloConsumer } from "react-apollo";
-import { checkAuth } from "../lib";
+import { Mutation } from "react-apollo";
 import { loginUserMutation, logoutUserMutation } from "../api";
 import { mutations, withAuthStore } from "../store/Auth";
-import { clearUser } from "../store/Auth/resolvers";
 
 const HeaderEl = styled.header`
   z-index: 100;
@@ -92,6 +90,7 @@ const HeaderShell = ({ auth }) => (
                   onClick={e => {
                     logoutUser();
                     client.mutate({ mutation: mutations.clearUserMutation });
+                    client.resetStore();
                   }}
                   to=""
                 >
