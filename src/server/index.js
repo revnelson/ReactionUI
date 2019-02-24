@@ -13,7 +13,7 @@ const app = express();
 
 // Use Nginx or Apache to serve static assets in production or remove the if() around the following
 // lines to use the express.static middleware to serve assets for production (not recommended!)
-if (true) {
+if (process.env.NODE_ENV === "development") {
   app.use(
     paths.publicPath,
     express.static(path.join(paths.clientBuild, paths.publicPath))
