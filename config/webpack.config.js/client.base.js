@@ -10,11 +10,10 @@ module.exports = {
     bundle: [require.resolve("@babel/polyfill"), `${paths.srcClient}/index.js`]
   },
   output: {
-    path: paths.clientBuild,
-    filename: "bundle.js",
-    chunkFilename: `${paths.publicPath.slice(
-      1
-    )}scripts/[name].[chunkhash:8].chunk.js`
+    path: `${paths.clientBuild}${paths.publicPath}`,
+    filename: "scripts/bundle.js",
+    publicPath: paths.publicPath,
+    chunkFilename: "scripts/[name].[chunkhash:8].chunk.js"
   },
   module: {
     rules: clientLoaders

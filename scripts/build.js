@@ -20,6 +20,7 @@ const generateStaticHTML = async () => {
 
   script.on("start", async () => {
     try {
+      console.log("Pulling the strings");
       // TODO: add try/wait/retry here instead of just generally waiting for 2000 ms
       await sleep(2000);
       const browser = await puppeteer.launch({
@@ -81,8 +82,8 @@ const build = async () => {
   try {
     await serverPromise;
     await clientPromise;
-    // await generateStaticHTML();
-    await process.exit("Building completed!");
+    await generateStaticHTML();
+    // await process.exit("Building completed!");
     logMessage("Done!", "info");
   } catch (error) {
     logMessage(error, "error");
