@@ -6,6 +6,8 @@ import { HttpLink } from "apollo-link-http";
 import { onError } from "apollo-link-error";
 import fetch from "isomorphic-unfetch";
 import { clientStore } from "./apolloLinkState";
+import dotenv from "dotenv";
+dotenv.config();
 
 const { BROWSER_API_URI, SERVER_API_URI, SITE_NAME } = process.env;
 
@@ -95,7 +97,7 @@ export const apolloServerInit = token => {
     fetch
   });
   const cache = new InMemoryCache();
-
+  console.log(SERVER_API_URI);
   const link = ApolloLink.from([
     errorMiddleware,
     requestLink,

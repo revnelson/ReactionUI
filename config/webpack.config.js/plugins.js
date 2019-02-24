@@ -28,8 +28,7 @@ const client = [
 const server = [
   new webpack.DefinePlugin({
     __SERVER__: "true",
-    __BROWSER__: "false",
-    "process.env.SERVER_API_URI": env.raw.SERVER_API_URI
+    __BROWSER__: "false"
   })
 ];
 
