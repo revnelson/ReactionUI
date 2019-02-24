@@ -1,8 +1,9 @@
 const webpack = require("webpack");
-const ManifestPlugin = require("webpack-manifest-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CaseSensitivePathsPlugin = require("case-sensitive-paths-webpack-plugin");
 const CompressionPlugin = require("compression-webpack-plugin");
-// const HtmlWebpackPlugin = require("html-webpack-plugin");
+const ManifestPlugin = require("webpack-manifest-plugin");
+const paths = require("../paths");
 
 const env = require("../env")();
 
@@ -10,7 +11,9 @@ const shared = [];
 
 const client = [
   // TODO: add client side only mode
-  // new HtmlWebpackPlugin({ title: env.stringified.SITE_NAME }),
+  new HtmlWebpackPlugin({
+    title: env.raw.SITE_NAME
+  }),
   new CaseSensitivePathsPlugin(),
   new webpack.DefinePlugin(env.stringified),
   new webpack.DefinePlugin({
@@ -18,7 +21,7 @@ const client = [
     __BROWSER__: "true"
   }),
   new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-  new ManifestPlugin({ fileName: "manifest.json" }),
+  new ManifestPlugin({ fileName: `${paths.publicPath.slice(1)}manifest.json` }),
   new CompressionPlugin({
     test: /\.js$|\.css$|\.html$/,
     threshold: 8192

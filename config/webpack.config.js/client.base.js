@@ -1,4 +1,3 @@
-const path = require("path");
 const paths = require("../paths");
 const { client: clientLoaders } = require("./loaders");
 const resolvers = require("./resolvers");
@@ -11,10 +10,12 @@ module.exports = {
     bundle: [require.resolve("@babel/polyfill"), `${paths.srcClient}/index.js`]
   },
   output: {
-    path: path.join(paths.clientBuild, paths.publicPath),
+    path: paths.clientBuild,
     filename: "bundle.js",
     publicPath: paths.publicPath,
-    chunkFilename: "[name].[chunkhash:8].chunk.js"
+    chunkFilename: `${paths.publicPath.slice(
+      1
+    )}scripts/[name].[chunkhash:8].chunk.js`
   },
   module: {
     rules: clientLoaders

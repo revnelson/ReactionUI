@@ -1,3 +1,4 @@
+import dotenv from "dotenv";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { ApolloClient } from "apollo-client";
 import { ApolloLink, Observable } from "apollo-link";
@@ -6,7 +7,7 @@ import { HttpLink } from "apollo-link-http";
 import { onError } from "apollo-link-error";
 import fetch from "isomorphic-unfetch";
 import { clientStore } from "./apolloLinkState";
-import dotenv from "dotenv";
+
 dotenv.config();
 
 const { BROWSER_API_URI, SERVER_API_URI, SITE_NAME } = process.env;

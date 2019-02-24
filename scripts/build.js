@@ -81,7 +81,8 @@ const build = async () => {
   try {
     await serverPromise;
     await clientPromise;
-    await generateStaticHTML();
+    // await generateStaticHTML();
+    await process.exit("Building completed!");
     logMessage("Done!", "info");
   } catch (error) {
     logMessage(error, "error");

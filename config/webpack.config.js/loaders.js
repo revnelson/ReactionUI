@@ -1,7 +1,8 @@
-const path = require("path");
 const fs = require("fs");
-
 const lessToJs = require("less-vars-to-js");
+const path = require("path");
+const paths = require("../paths");
+
 const themeVariables = lessToJs(
   fs.readFileSync(
     path.join(__dirname, "../../src/shared/style/antd.less"),
@@ -37,7 +38,7 @@ const urlLoaderClient = {
   loader: require.resolve("url-loader"),
   options: {
     limit: 2048,
-    name: "assets/[name].[hash:8].[ext]"
+    name: `${paths.publicPath.slice(1)}assets/[name].[hash:8].[ext]`
   }
 };
 
@@ -55,7 +56,7 @@ const fileLoaderClient = {
     {
       loader: require.resolve("file-loader"),
       options: {
-        name: "assets/[name].[hash:8].[ext]"
+        name: `${paths.publicPath.slice(1)}assets/[name].[hash:8].[ext]`
       }
     }
   ]
@@ -67,7 +68,7 @@ const fileLoaderServer = {
     {
       loader: require.resolve("file-loader"),
       options: {
-        name: "assets/[name].[hash:8].[ext]",
+        name: `${paths.publicPath.slice(1)}assets/[name].[hash:8].[ext]`,
         emitFile: false
       }
     }
@@ -105,13 +106,20 @@ const client = [
       urlLoaderClient,
       fileLoaderClient,
       apolloFix,
-      lessLoader
+      lessLoader,
+      themeVariables
     ]
   }
 ];
 const server = [
   {
-    oneOf: [babelLoader, urlLoaderServer, fileLoaderServer, lessLoader]
+    oneOf: [
+      babelLoader,
+      urlLoaderServer,
+      fileLoaderServer,
+      lessLoader,
+      themeVariables
+    ]
   }
 ];
 
