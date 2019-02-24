@@ -93,7 +93,7 @@ const lessLoader = {
     {
       loader: "less-loader",
       options: {
-        paths: [path.join(__dirname, "../../node_modules")]
+        modifyVars: themeVariables
       }
     }
   ]
@@ -106,20 +106,13 @@ const client = [
       urlLoaderClient,
       fileLoaderClient,
       apolloFix,
-      lessLoader,
-      themeVariables
+      lessLoader
     ]
   }
 ];
 const server = [
   {
-    oneOf: [
-      babelLoader,
-      urlLoaderServer,
-      fileLoaderServer,
-      lessLoader,
-      themeVariables
-    ]
+    oneOf: [babelLoader, urlLoaderServer, fileLoaderServer, lessLoader]
   }
 ];
 
