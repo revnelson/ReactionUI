@@ -22,7 +22,7 @@ const errorMiddleware = onError(({ graphQLErrors, networkError }) => {
 });
 
 const request = async operation => {
-  console.log(operation);
+  // console.log(operation);
 };
 
 const requestLink = new ApolloLink(
@@ -98,7 +98,6 @@ export const apolloServerInit = token => {
     fetch
   });
   const cache = new InMemoryCache();
-  console.log(SERVER_API_URI);
   const link = ApolloLink.from([
     errorMiddleware,
     requestLink,
