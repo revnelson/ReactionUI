@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 import { withNamespaces } from "react-i18next";
 import { withAuthStore } from "../store/Auth";
 
-export default namespaces =>
+export const withPage = namespaces =>
   compose(
     withRouter,
     withNamespaces(namespaces),

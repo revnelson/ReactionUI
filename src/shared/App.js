@@ -6,10 +6,7 @@ import { GlobalStyles } from "./style/global";
 import LoadingComponent from "./components/loading";
 import ErrorComponent from "./components/error";
 import Layout from "./containers/layout";
-import { checkAuth, isServer } from "./lib";
 import { withLangStore } from "./store/Lang";
-import { withApollo } from "react-apollo";
-import { withAuthStore } from "./store/Auth";
 
 const Home = importComponent(() => import("./pages/home"), {
   LoadingComponent,
@@ -21,9 +18,14 @@ const About = importComponent(() => import("./pages/about"), {
   ErrorComponent
 });
 
+const Login = importComponent(() => import("./pages/login"), {
+  LoadingComponent,
+  ErrorComponent
+});
+
 class App extends React.Component {
   render() {
-    const { auth, lang } = this.props;
+    const { lang } = this.props;
     return (
       <React.Fragment>
         <Helmet htmlAttributes={{ lang: lang.locale }} />
@@ -32,13 +34,13 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/" component={() => <Home />} />
             <Route path="/about" component={() => <About />} />
+            <Route path="/login/:next?" component={() => <Login />} />
             <Redirect to="/" />
           </Switch>
-          {auth.id && "Ya logged in!"}
         </Layout>
       </React.Fragment>
     );
   }
 }
 
-export default withLangStore(withAuthStore(App));
+export default withLangStore(App);

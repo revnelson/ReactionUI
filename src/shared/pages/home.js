@@ -1,14 +1,11 @@
 import React from "react";
 import Helmet from "react-helmet-async";
-import { Query } from "react-apollo";
-import { Spin, Alert } from "antd";
-import Page from "../lib/page";
+import { withPage } from "../lib";
 import { Wrapper } from "../style/wrapper";
 import { ReactComponent as ReactLogo } from "../assets/react.svg";
 import { withLangStore } from "../store/Lang";
-import { fetchUserQuery } from "../api";
 
-const Home = ({ auth, changeLocaleMutation, t }) => {
+const Home = ({ changeLocaleMutation, t }) => {
   const setLanguage = e => {
     const locale = e.target.value;
     changeLocaleMutation({ variables: { locale } });
@@ -32,31 +29,8 @@ const Home = ({ auth, changeLocaleMutation, t }) => {
           English
         </button>
       </p>
-      {auth.id && (
-        <Query query={fetchUserQuery}>
-          {({ loading, error, data }) => {
-            if (loading) return null;
-            if (error) return `Error!: ${error}`;
-            return (
-              <Spin spinning={!loading}>
-                <Alert
-                  description="This is the about page"
-                  message={
-                    loading
-                      ? "Loading..."
-                      : data && data.getUser
-                      ? `Hello ${data.getUser.username}!`
-                      : "Error fetching users"
-                  }
-                  type="info"
-                />
-              </Spin>
-            );
-          }}
-        </Query>
-      )}
     </Wrapper>
   );
 };
 
-export default Page("en")(withLangStore(Home));
+export default withPage("en")(withLangStore(Home));

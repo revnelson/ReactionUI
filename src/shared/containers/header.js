@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { appConfig } from "../config";
 import { NavLink } from "react-router-dom";
 import { Mutation } from "react-apollo";
-import { loginUserMutation, logoutUserMutation } from "../api";
-import { mutations, withAuthStore } from "../store/Auth";
+import { logoutUserMutation } from "../api";
+import { withAuthStore } from "../store/Auth";
 
 const HeaderEl = styled.header`
   z-index: 100;
@@ -38,7 +38,7 @@ const MenuLink = styled.li`
   text-decoration: none;
 `;
 
-const HeaderShell = ({ auth }) => (
+const HeaderShell = ({ auth, setUserMutation }) => (
   <HeaderEl>
     <Brand>{appConfig.siteName}</Brand>
     <Menu>
@@ -54,31 +54,7 @@ const HeaderShell = ({ auth }) => (
       </MenuLink>
       {!auth.id && (
         <MenuLink>
-          <Mutation mutation={loginUserMutation}>
-            {(loginUser, { client, loading }) => {
-              return (
-                <NavLink
-                  onClick={e => {
-                    loginUser({
-                      variables: { username: "michael", password: "nelson" }
-                    })
-                      .then(({ data }) => {
-                        const { user } = data.loginUser;
-                        console.log(user);
-                        client.mutate({
-                          mutation: mutations.setUserMutation,
-                          variables: { user }
-                        });
-                      })
-                      .catch(e => console.log(e));
-                  }}
-                  to=""
-                >
-                  {loading ? "Logging in..." : "Log In"}
-                </NavLink>
-              );
-            }}
-          </Mutation>
+          <NavLink to="/login">Log In</NavLink>
         </MenuLink>
       )}
       {auth.id && (
@@ -89,7 +65,6 @@ const HeaderShell = ({ auth }) => (
                 <NavLink
                   onClick={e => {
                     logoutUser();
-                    client.mutate({ mutation: mutations.clearUserMutation });
                     client.resetStore();
                   }}
                   to=""

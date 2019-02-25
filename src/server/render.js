@@ -9,23 +9,27 @@ import { ServerStyleSheet } from "styled-components";
 import IntlProvider from "../shared/i18n/IntlProvider";
 import HTML from "./components/HTML";
 import App from "../shared/App";
-import { apolloServerInit, checkCookie } from "../shared/lib";
+import { apolloServerInit } from "../shared/lib";
+import { checkCookie } from "./auth";
+import { ApolloUserInjector } from "./apolloServer";
 
 const serverRenderer = (req, res) => {
   let helmetContext = {};
   let routerContext = {};
-  const token = checkCookie(req.headers.cookie);
+  const { token, user } = checkCookie(req.headers.cookie);
   const client = apolloServerInit(token);
   const sheet = new ServerStyleSheet();
   const content = sheet.collectStyles(
     <ApolloProvider client={client}>
-      <HelmetProvider context={helmetContext}>
-        <StaticRouter location={req.url} context={routerContext}>
-          <IntlProvider>
-            <App />
-          </IntlProvider>
-        </StaticRouter>
-      </HelmetProvider>
+      <ApolloUserInjector user={user}>
+        <HelmetProvider context={helmetContext}>
+          <StaticRouter location={req.url} context={routerContext}>
+            <IntlProvider>
+              <App />
+            </IntlProvider>
+          </StaticRouter>
+        </HelmetProvider>
+      </ApolloUserInjector>
     </ApolloProvider>
   );
 

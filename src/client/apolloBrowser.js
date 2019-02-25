@@ -1,31 +1,16 @@
 import React from "react";
 import { ApolloProvider } from "react-apollo";
 import { apolloBrowserInit } from "../shared/lib";
-import { mutations } from "../shared/store/Auth";
-import { checkAuthQuery } from "../shared/api";
 
-class PersistorContainer extends React.Component {
+export class ApolloPersistor extends React.Component {
   state = {
     client: null,
     loaded: false
   };
 
-  // check the users auth cookie and set the global user state
-  checkAuth = async client => {
-    const { data } = await client.query({ query: checkAuthQuery });
-    const { user } = data && data.checkAuth ? data.checkAuth : "";
-    user &&
-      client.mutate({
-        mutation: mutations.setUserMutation,
-        variables: { user }
-      });
-  };
-
   async componentDidMount() {
     try {
       const client = await apolloBrowserInit();
-
-      await this.checkAuth(client);
 
       await this.setState({
         client,
@@ -46,5 +31,3 @@ class PersistorContainer extends React.Component {
     );
   }
 }
-
-export const ApolloPersist = PersistorContainer;

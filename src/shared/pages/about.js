@@ -1,6 +1,6 @@
 import React from "react";
 import Helmet from "react-helmet-async";
-import Page from "../lib/page";
+import { withPage } from "../lib";
 import { Wrapper } from "../style/wrapper";
 import { Query } from "react-apollo";
 import { fetchUserQuery } from "../api";
@@ -37,4 +37,4 @@ const About = ({ auth }) => (
   </Wrapper>
 );
 
-export default Page()(About);
+export default withPage()(About);
