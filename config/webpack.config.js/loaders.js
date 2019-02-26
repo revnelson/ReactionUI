@@ -1,6 +1,11 @@
 const fs = require("fs");
 const lessToJs = require("less-vars-to-js");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const path = require("path");
+const pkg = require("../../package.json");
+
+const reStyle = /\.(css|less|scss|sss)$/;
 
 const themeVariables = lessToJs(
   fs.readFileSync(
@@ -9,11 +14,28 @@ const themeVariables = lessToJs(
   )
 );
 
+const isDev = process.env === "development";
+
 const babelLoader = {
   test: /\.(js|jsx|mjs)$/,
   exclude: /node_modules/,
   loader: require.resolve("babel-loader"),
   options: {
+    presets: [
+      [
+        "@babel/env",
+        {
+          targets: {
+            browsers: pkg.browserList,
+            uglify: true
+          },
+          modules: false,
+          useBuiltIns: false,
+          debug: false
+        }
+      ],
+      "@babel/preset-react"
+    ],
     plugins: [
       [
         require.resolve("babel-plugin-named-asset-import"),
@@ -33,7 +55,7 @@ const babelLoader = {
 };
 
 const urlLoaderClient = {
-  test: /\.(png|jpe?g|gif|svg)$/,
+  test: /\.(eot|woff|woff2|ttf|png|jpe?g|gif|svg)$/,
   loader: require.resolve("url-loader"),
   options: {
     limit: 2048,
@@ -50,7 +72,7 @@ const urlLoaderServer = {
 };
 
 const fileLoaderClient = {
-  exclude: [/\.(js|css|mjs|html|ejs|json)$/],
+  exclude: [/\.(js|css|less|mjs|html|ejs|json)$/],
   use: [
     {
       loader: require.resolve("file-loader"),
@@ -62,7 +84,7 @@ const fileLoaderClient = {
 };
 
 const fileLoaderServer = {
-  exclude: [/\.(js|css|mjs|html|ejs|json)$/],
+  exclude: [/\.(js|css|less|mjs|html|ejs|json)$/],
   use: [
     {
       loader: require.resolve("file-loader"),
@@ -82,26 +104,31 @@ const apolloFix = {
 
 const lessLoader = {
   test: /\.less$/,
-  use: [
-    {
-      loader: "style-loader"
-    },
-    {
-      loader: "css-loader"
-    },
-    {
-      loader: "less-loader",
-      options: {
-        modifyVars: themeVariables
+  use: ExtractTextPlugin.extract({
+    fallback: "style-loader",
+    use: [
+      { loader: "css-loader", options: { sourceMap: true } },
+      {
+        loader: "less-loader",
+        options: { javascriptEnabled: true, sourceMap: true }
       }
-    }
-  ]
+    ]
+  })
 };
+
+// Only use babel-plugin-import in client side
+const clientBabelLoader = { ...babelLoader };
+
+// Only use babel-plugin-import in client side
+clientBabelLoader.options.plugins = [
+  ...clientBabelLoader.options.plugins,
+  ["import", { libraryName: "antd", style: true }]
+];
 
 const client = [
   {
     oneOf: [
-      babelLoader,
+      clientBabelLoader,
       urlLoaderClient,
       fileLoaderClient,
       apolloFix,
@@ -111,7 +138,7 @@ const client = [
 ];
 const server = [
   {
-    oneOf: [babelLoader, urlLoaderServer, fileLoaderServer, lessLoader]
+    oneOf: [babelLoader, urlLoaderServer, fileLoaderServer]
   }
 ];
 

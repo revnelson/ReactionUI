@@ -2,7 +2,7 @@ import React from "react";
 import Helmet from "react-helmet-async";
 import { withPage } from "../lib";
 import { Wrapper } from "../style/wrapper";
-import { ReactComponent as ReactLogo } from "../assets/react.svg";
+import ReactLogo from "../assets/react.svg";
 import { withLangStore } from "../store/Lang";
 
 const Home = ({ changeLocaleMutation, t }) => {

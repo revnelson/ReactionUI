@@ -10,6 +10,7 @@ import { I18nextProvider } from "react-i18next";
 import { withApollo } from "react-apollo";
 import { appConfig } from "../config";
 import { withLangStore } from "../store/Lang";
+import { isServer } from "../lib";
 
 const loadLocales = (url, options, callback, data) => {
   try {
@@ -20,7 +21,7 @@ const loadLocales = (url, options, callback, data) => {
   }
 };
 
-if (__BROWSER__) {
+if (!isServer) {
   const chainedBrowserBackend = new chainedBackend(null, {
     backends: [
       LocalStorageBackend, // primary
@@ -46,7 +47,7 @@ if (__BROWSER__) {
   });
   i18next.use(chainedBrowserBackend);
 }
-if (__SERVER__) {
+if (isServer) {
   const fsBackend = require("i18next-node-fs-backend");
   const FSBackend = new fsBackend(null, {
     loadPath: "src/shared/i18n/locales/{{lng}}/{{ns}}.json",

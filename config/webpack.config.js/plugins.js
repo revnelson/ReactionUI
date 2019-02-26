@@ -1,6 +1,7 @@
 const webpack = require("webpack");
 // const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CaseSensitivePathsPlugin = require("case-sensitive-paths-webpack-plugin");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CompressionPlugin = require("compression-webpack-plugin");
 const ManifestPlugin = require("webpack-manifest-plugin");
 
@@ -13,6 +14,12 @@ const client = [
   // new HtmlWebpackPlugin({
   //   title: env.raw.SITE_NAME
   // }),
+  new ExtractTextPlugin({
+    filename: getPath => {
+      return getPath("css/[name].css").replace("css/js", "css");
+    },
+    allChunks: true
+  }),
   new CaseSensitivePathsPlugin(),
   new webpack.DefinePlugin(env.stringified),
   new webpack.DefinePlugin({

@@ -3,9 +3,7 @@ import compression from "compression";
 import path from "path";
 import chalk from "chalk";
 import morgan from "morgan";
-import manifestHelpers from "./middleware/manifest-helpers";
-import serverRender from "./render";
-import paths from "../../config/paths";
+import { SSR } from "./render";
 
 require("dotenv").config();
 
@@ -13,31 +11,18 @@ const app = express();
 
 // Use Nginx or Apache to serve static assets in production or remove the if() around the following
 // lines to use the express.static middleware to serve assets for production (not recommended!)
-if (process.env.NODE_ENV === "development") {
-  app.use(
-    paths.publicPath,
-    express.static(path.join(paths.clientBuild, paths.publicPath))
-  );
-  app.use("/favicon.ico", (req, res) => {
-    res.send("");
-  });
+if (process.env.STATIC_SERVER === "true") {
+  app.use("/", express.static(path.join("build/client")));
+  // app.use("/favicon.ico", (req, res) => {
+  //   res.send("");
+  // });
 }
 
 app.use(compression({ level: 6 }));
 
-app.use(express.json());
-
 app.use(morgan("tiny"));
 
-const manifestPath = path.join(paths.clientBuild, paths.publicPath);
-
-app.use(
-  manifestHelpers({
-    manifestPath: `${manifestPath}/manifest.json`
-  })
-);
-
-app.get("/*", serverRender);
+app.get("/*", SSR);
 
 app.use((err, req, res, next) => {
   return res.status(404).json({

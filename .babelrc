@@ -1,0 +1,26 @@
+{
+  "presets": [
+    "@babel/preset-env",
+    "@babel/preset-react"
+  ],
+  "plugins": ["@babel/plugin-transform-runtime",
+    "@babel/plugin-proposal-object-rest-spread",
+    "@babel/plugin-proposal-class-properties",
+    "babel-plugin-styled-components",
+    "react-imported-component/babel",
+    // "@babel/plugin-proposal-optional-chaining",
+  ],
+  "env": {
+    "server": {
+      "plugins": ["@babel/plugin-syntax-dynamic-import"]
+    },
+    "client": {
+      "plugins": [
+        ["import", {
+          "libraryName": "antd",
+          "style": true
+        }]
+      ]
+    }
+  }
+}

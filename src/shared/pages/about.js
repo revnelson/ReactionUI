@@ -15,7 +15,7 @@ const About = ({ auth }) => (
       <Query query={fetchUserQuery}>
         {({ loading, error, data }) => {
           return (
-            <Spin spinning={!loading}>
+            <Spin spinning={loading}>
               <Alert
                 description="This is the about page"
                 message={

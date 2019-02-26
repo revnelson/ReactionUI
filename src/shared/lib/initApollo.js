@@ -1,4 +1,3 @@
-import dotenv from "dotenv";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { ApolloClient } from "apollo-client";
 import { ApolloLink, Observable } from "apollo-link";
@@ -7,10 +6,6 @@ import { HttpLink } from "apollo-link-http";
 import { onError } from "apollo-link-error";
 import fetch from "isomorphic-unfetch";
 import { clientStore } from "./apolloLinkState";
-
-dotenv.config();
-
-const { BROWSER_API_URI, SERVER_API_URI, SITE_NAME } = process.env;
 
 const errorMiddleware = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
@@ -48,7 +43,7 @@ const requestLink = new ApolloLink(
 
 export const apolloBrowserInit = async () => {
   const serverLink = new HttpLink({
-    uri: BROWSER_API_URI,
+    uri: process.env.BROWSER_API_URI,
     credentials: "include",
     fetch
   });
@@ -67,7 +62,7 @@ export const apolloBrowserInit = async () => {
   const persistor = new CachePersistor({
     cache,
     storage: window.localStorage,
-    key: SITE_NAME
+    key: process.env.SITE_NAME
   });
 
   await persistor.restore();
@@ -85,7 +80,7 @@ export const apolloBrowserInit = async () => {
 
 export const apolloServerInit = token => {
   const serverLink = new HttpLink({
-    uri: SERVER_API_URI,
+    uri: process.env.SERVER_API_URI,
     headers: {
       Authorization: token ? token : ""
     },

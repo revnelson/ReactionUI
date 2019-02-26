@@ -1,21 +1,31 @@
 import React from "react";
-import { renderToString, renderToNodeStream } from "react-dom/server";
-import { StaticRouter } from "react-router-dom";
-import { printDrainHydrateMarks } from "react-imported-component";
-import log from "llog";
+import { renderToNodeStream } from "react-dom/server";
 import { HelmetProvider } from "react-helmet-async";
-import { ApolloProvider, getDataFromTree } from "react-apollo";
+import { StaticRouter } from "react-router-dom";
 import { ServerStyleSheet } from "styled-components";
+import { ApolloProvider, getDataFromTree } from "react-apollo";
 import IntlProvider from "../shared/i18n/IntlProvider";
-import HTML from "./components/HTML";
+import log from "llog";
+import through from "through";
 import App from "../shared/App";
+import { getHTMLFragments } from "./client";
 import { apolloServerInit } from "../shared/lib";
 import { checkCookie } from "./auth";
 import { ApolloUserInjector } from "./apolloServer";
 
-const serverRenderer = (req, res) => {
-  let helmetContext = {};
-  let routerContext = {};
+export function write(data) {
+  this.queue(data);
+}
+
+export const end = endingHTMLFragment =>
+  function end() {
+    this.queue(endingHTMLFragment);
+    this.queue(null);
+  };
+
+export const SSR = (req, res) => {
+  const helmetContext = {};
+  const context = {};
   const { token, user } = checkCookie(req.headers.cookie);
   const client = apolloServerInit(token);
   const sheet = new ServerStyleSheet();
@@ -23,7 +33,7 @@ const serverRenderer = (req, res) => {
     <ApolloProvider client={client}>
       <ApolloUserInjector user={user}>
         <HelmetProvider context={helmetContext}>
-          <StaticRouter location={req.url} context={routerContext}>
+          <StaticRouter location={req.originalUrl} context={context}>
             <IntlProvider>
               <App />
             </IntlProvider>
@@ -32,44 +42,34 @@ const serverRenderer = (req, res) => {
       </ApolloUserInjector>
     </ApolloProvider>
   );
-
-  getDataFromTree(content)
-    .then(() => {
-      if (routerContext.url) {
-        res.redirect(301, routerContext.url);
-      } else {
-        const { helmet } = helmetContext;
-
-        const html =
-          "<!DOCTYPE html>" +
-          renderToString(<HTML locals={res.locals} helmet={helmet} />);
-        const appString = '<div id="app">';
-        const splitter = "###SPLIT###";
-        const [startingRawHTMLFragment, endingHTMLFragment] = html
-          .replace(appString, `${appString}${splitter}`)
-          .split(splitter);
-        const startingHTMLFragment = `${startingRawHTMLFragment}${printDrainHydrateMarks()}`;
-
+  try {
+    getDataFromTree(content)
+      .then(() => {
         const stream = sheet.interleaveWithNodeStream(
           renderToNodeStream(content)
         );
+        if (context.url) {
+          return res.redirect(301, context.url);
+        }
+        const { helmet } = helmetContext;
+
+        const [startingHTMLFragment, endingHTMLFragment] = getHTMLFragments(
+          helmet
+        );
 
         res.status(200);
-        res.set("content-type", "text/html");
         res.write(startingHTMLFragment);
-        stream.pipe(
-          res,
-          { end: false }
-        );
-        stream.on("end", () => res.end(endingHTMLFragment));
-      }
-    })
-    .catch(e => {
-      log.error(e);
-      console.log(e);
-      res.status(500);
-      res.end();
-    });
+        stream.pipe(through(write, end(endingHTMLFragment))).pipe(res);
+      })
+      .catch(e => {
+        log.error(e);
+        console.log(e);
+        res.status(500);
+        res.end();
+      });
+  } catch (e) {
+    log.error(e);
+    res.status(500);
+    res.end();
+  }
 };
-
-export default serverRenderer;
