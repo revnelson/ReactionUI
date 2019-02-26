@@ -66,20 +66,21 @@ class LoginFormContent extends React.Component {
 
           user && setUserMutation({ variables: { user } });
 
-          const destination = match.next ? match.next : "/";
-
-          notification.success({
-            message: t("login-successful"),
-            duration: 1,
-            onClose: () => {
-              this.setState({ loading: false });
-              history.push(destination);
-            },
-            onClick: () => {
-              this.setState({ loading: false });
-              history.push(destination);
-            }
-          });
+          const destination = match.params.next ? `/${match.params.next}` : "/";
+          await this.setState({ loading: false });
+          await history.push(destination);
+          // notification.success({
+          //   message: t("login-successful"),
+          //   duration: 1,
+          //   onClose: () => {
+          //     this.setState({ loading: false });
+          //     history.push(destination);
+          //   },
+          //   onClick: () => {
+          //     this.setState({ loading: false });
+          //     history.push(destination);
+          //   }
+          // });
         } catch (e) {
           this.setState({
             error: e.message,
@@ -93,9 +94,7 @@ class LoginFormContent extends React.Component {
   };
 
   render() {
-    const { form, match, t } = this.props;
-
-    console.log(match);
+    const { form, t } = this.props;
     const { getFieldDecorator } = form;
     const { loading, modalForgot } = this.state;
     return (

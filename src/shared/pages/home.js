@@ -22,10 +22,10 @@ const Home = ({ changeLocaleMutation, t }) => {
 
       <h2>{t("i18n-example")}</h2>
       <p>
-        <button value="de_DE" onClick={setLanguage}>
+        <button value="de" onClick={setLanguage}>
           Deutsch
         </button>
-        <button value="en_US" onClick={setLanguage}>
+        <button value="en" onClick={setLanguage}>
           English
         </button>
       </p>
@@ -33,4 +33,4 @@ const Home = ({ changeLocaleMutation, t }) => {
   );
 };
 
-export default withPage("en")(withLangStore(Home));
+export default withPage()(withLangStore(Home));

@@ -16,4 +16,4 @@ const LoginPage = () => {
   );
 };
 
-export default withPage("en")(LoginPage);
+export default withPage()(LoginPage);
