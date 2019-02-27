@@ -9,7 +9,7 @@
     "yarn": "^1.12.3"
   },
   "browserslist": [
-    "last 2 versions",
+    "last 4 versions",
     "ie >= 9"
   ],
   "scripts": {
@@ -95,6 +95,7 @@
     "nodemon": "^1.18.9",
     "parcel-bundler": "^1.11.0",
     "parcel-plugin-bundle-visualiser": "^1.2.0",
+    "parcel-plugin-compress": "^1.0.7",
     "plop": "^2.2.0",
     "puppeteer": "^1.12.1",
     "react-hot-loader": "^4.7.1",
