@@ -5,19 +5,14 @@ import Layout from "./containers/layout";
 import { withLangStore } from "./store/Lang";
 import { Routes } from "./routes";
 
-class App extends React.Component {
-  render() {
-    const { lang } = this.props;
-    return (
-      <React.Fragment>
-        <Helmet htmlAttributes={{ lang: lang.locale }} />
-        <GlobalStyles />
-        <Layout>
-          <Routes />
-        </Layout>
-      </React.Fragment>
-    );
-  }
-}
+const App = ({ lang }) => (
+  <React.Fragment>
+    <Helmet htmlAttributes={{ lang: lang.locale }} />
+    <GlobalStyles />
+    <Layout>
+      <Routes />
+    </Layout>
+  </React.Fragment>
+);
 
 export default withLangStore(App);

@@ -1,9 +1,0 @@
-import gql from "graphql-tag";
-
-export const {{camelCase storeName}}Query = gql`
-  query get{{pascalCase storeName}}Store {
-    {{camelCase storeName}} @client {
-      test
-    }
-  }
-`;

@@ -6,12 +6,9 @@
   "password": "Password",
   "email-error": "Invalid Email",
   "password-error": "Invalid Password",
-  "remember-me": "Remember Me",
-  "forgot-pass": "Forgot Password?",
   "log-in": "Login",
   "sign-up": "Sign Up",
   "cancel": "Cancel",
   "submit": "Submit",
-  "site-name": "ReactionUI",
-  "forgot-pass-desc": "Enter your email and we will send you a link to reset your password."
+  "site-name": "ReactionUI"
 }

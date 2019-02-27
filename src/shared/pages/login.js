@@ -1,6 +1,5 @@
 import React from "react";
 import Helmet from "react-helmet-async";
-import { withPage } from "../lib";
 import { Wrapper } from "../style/wrapper";
 import { LoginForm } from "../components/loginForm";
 
@@ -16,4 +15,4 @@ const LoginPage = () => {
   );
 };
 
-export default withPage()(LoginPage);
+export default LoginPage;

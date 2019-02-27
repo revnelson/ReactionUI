@@ -1,7 +1,0 @@
-import gql from "graphql-tag";
-
-export const sampleMutation = gql`
-  mutation sampleToggle {
-    sampleToggle @client
-  }
-`;

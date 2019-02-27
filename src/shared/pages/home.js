@@ -1,15 +1,16 @@
 import React from "react";
 import Helmet from "react-helmet-async";
-import { withPage } from "../lib";
+import { useTranslation } from "react-i18next";
 import { Wrapper } from "../style/wrapper";
 import ReactLogo from "../assets/react.svg";
-import { withLangStore } from "../store/Lang";
 
-const Home = ({ changeLocaleMutation, t }) => {
+const Home = () => {
+  const [t, i18n] = useTranslation("common");
+
   const setLanguage = e => {
-    const locale = e.target.value;
-    changeLocaleMutation({ variables: { locale } });
+    i18n.changeLanguage(e.target.value);
   };
+
   return (
     <Wrapper>
       <Helmet>
@@ -33,4 +34,4 @@ const Home = ({ changeLocaleMutation, t }) => {
   );
 };
 
-export default withPage()(withLangStore(Home));
+export default Home;

@@ -5,7 +5,7 @@ import { CachePersistor } from "apollo-cache-persist";
 import { HttpLink } from "apollo-link-http";
 import { onError } from "apollo-link-error";
 import fetch from "isomorphic-unfetch";
-import { clientStore } from "./apolloLinkState";
+import { data, resolvers } from "./apolloLinkState";
 
 const errorMiddleware = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
@@ -48,16 +48,11 @@ export const apolloBrowserInit = async () => {
     fetch
   });
 
-  const stateLink = clientStore(cache);
-
-  const link = ApolloLink.from([
-    errorMiddleware,
-    requestLink,
-    stateLink,
-    serverLink
-  ]);
+  const link = ApolloLink.from([errorMiddleware, requestLink, serverLink]);
 
   const cache = new InMemoryCache();
+
+  cache.writeData({ data });
 
   const persistor = new CachePersistor({
     cache,
@@ -68,12 +63,13 @@ export const apolloBrowserInit = async () => {
   await persistor.restore();
 
   const client = new ApolloClient({
-    ssrMode: false,
+    cache,
     link,
-    cache
+    resolvers,
+    ssrMode: false
   });
 
-  client.onResetStore(stateLink.writeDefaults);
+  client.onResetStore(() => cache.writeData({ data }));
 
   return client;
 };
@@ -86,13 +82,12 @@ export const apolloServerInit = token => {
     },
     fetch
   });
-  const cache = new InMemoryCache();
-  const link = ApolloLink.from([
-    errorMiddleware,
-    requestLink,
-    clientStore(cache),
-    serverLink
-  ]);
 
-  return new ApolloClient({ ssrMode: true, link, cache });
+  const cache = new InMemoryCache();
+
+  cache.writeData({ data });
+
+  const link = ApolloLink.from([errorMiddleware, requestLink, serverLink]);
+
+  return new ApolloClient({ cache, link, resolvers, ssrMode: true });
 };

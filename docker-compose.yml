@@ -1,0 +1,11 @@
+version: "3"
+services:
+  dev:
+    image: node:11
+    volumes:
+      - .:/usr/src/service
+    working_dir: /usr/src/service
+    command: yarn dev
+    ports:
+      - 3333:3333
+      - 3335:3335

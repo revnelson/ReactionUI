@@ -4,7 +4,7 @@ import { HelmetProvider } from "react-helmet-async";
 import { StaticRouter } from "react-router-dom";
 import { ServerStyleSheet } from "styled-components";
 import { ApolloProvider, getDataFromTree } from "react-apollo";
-import IntlProvider from "../shared/i18n/IntlProvider";
+import { I18nextProvider } from "react-i18next";
 import log from "llog";
 import through from "through";
 import App from "../shared/App";
@@ -33,11 +33,11 @@ export const SSR = (req, res) => {
     <ApolloProvider client={client}>
       <ApolloUserInjector user={user}>
         <HelmetProvider context={helmetContext}>
-          <StaticRouter location={req.originalUrl} context={context}>
-            <IntlProvider>
+          <I18nextProvider i18n={req.i18n}>
+            <StaticRouter location={req.originalUrl} context={context}>
               <App />
-            </IntlProvider>
-          </StaticRouter>
+            </StaticRouter>
+          </I18nextProvider>
         </HelmetProvider>
       </ApolloUserInjector>
     </ApolloProvider>
