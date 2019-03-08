@@ -30,7 +30,7 @@ Use the `yarn plop` command to access the plop menu. From here you can easily ge
 
 ## Apollo Link State
 
-Apollo Link State is included in lieu of Redux to have a more uniform method of requesting data throughout the site, whether it's local data or data from an API (GraphQL Server). The most complicated bit tends to be the setup. This is mitigated by the use of plop which will add a new store folder for you in `src/shared/store`, generate individual files for queries, mutations and resolvers. The plop service also links it all up to the Apollo Provider so it's ready to be used.
+Apollo Link State is included in lieu of Redux to have a more uniform method of requesting data throughout the site, whether it's local data or data from an API (GraphQL Server). The most complicated bit tends to be the setup. This is mitigated by the use of plop which will add a new store folder for you in `src/store`, generate individual files for queries, mutations and resolvers. The plop service also links it all up to the Apollo Provider so it's ready to be used.
 
 To use a store, wrap a component with its `with{{StoreName}}Store` (i.e. `withLangStore`) function, which is exported from each plop-generated store. Once wrapped, the component with receive the store as an object as well as all mutations and queries as props. You shouldn't need queries within components as you can access the store data via something like `this.props.lang.locale`. They are useful for use within resolvers or when removing then `@client` directive to get data from an API server in your components. Calling a mutation looks something like `this.props.changeLocaleMutation({ variables: { locale: "en_US" }})`. No need for a return as `this.props.lang.locale` will reflect the updated value, but returns are possible.
 
@@ -62,7 +62,7 @@ Each store exports a component wrapper, a mutations object, and a queries object
 
 ## Auth
 
-The `loginUser` mutation expects to send `{ username, password }` as its variables (both as strings) and return a `{ token, user }` object. Upon return the app will store the token as a cookie with the name set in `/src/shared/config/app.js`. Modify this if it doesn't match your API schema.
+The `loginUser` mutation expects to send `{ username, password }` as its variables (both as strings) and return a `{ token, user }` object. Upon return the app will store the token as a cookie with the name set in `/src/config/app.js`. Modify this if it doesn't match your API schema.
 
 On each page load, the app will check for a cookie and set a userId if present. This allows for first-load authentication to load (or not load) routes/components based on logged-in status. It's up to you to ensure your API handles security properly and issues a JWT token you trust.
 

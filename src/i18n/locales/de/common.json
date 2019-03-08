@@ -1,0 +1,11 @@
+{
+  "features": "Funktionen",
+  "i18n-example": "i18n Beispiel",
+  "i18n-support": "i18n Unterstützung (durch React i18Next)",
+  "login": "Anmelde",
+  "logout": "Abmelden",
+  "register": "Registrieren",
+  "email": "E-Mail",
+  "password": "Kennwort",
+  "submit": "Absenden"
+}

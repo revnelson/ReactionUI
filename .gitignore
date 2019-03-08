@@ -9,6 +9,8 @@ node_modules/
 
 build/
 
-src/client/imported.js
+src/ssr/imported.js
 
 .compressrc
+
+src/icons/
