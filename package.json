@@ -17,7 +17,7 @@
   "scripts": {
     "analyze": "yarn run build --analyse",
     "build": "yarn get-imported && babel-node tools/run build --release",
-    "dev": "yarn run start",
+    "dev": "yarn get-imported && babel-node tools/run start",
     "dev-docker": "docker-compose up",
     "docker-install": "docker-compose -f docker-compose.builder.yml run install",
     "get-imported": "imported-components src ssr/client/imported.js",
@@ -27,7 +27,7 @@
     "plop": "plop",
     "prod": "yarn build && yarn start",
     "serve": "yarn build && babel-node build/server",
-    "start": "yarn get-imported && babel-node tools/run start",
+    "start": "node build/server",
     "pm2": "yarn build && pm2 start build/server.js --name $npm_package_name",
     "pm2:restart": "yarn build && pm2 restart $npm_package_name",
     "pm2:stop": "pm2 stop $npm_package_name"

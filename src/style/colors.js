@@ -1,23 +1,50 @@
-import palx from "palx";
 import { lighten, darken, desaturate } from "polished";
 
-// TODO - Strip Palx out and use polished.
-
-export const primaryColor = "#3B8EA5";
+export const primary = "#3B8EA5";
 
 const secondary = "#F5EE9E";
 
 const third = "#F49E4C";
 
-const fourth = "#AB3428";
+const fourth = "#C1323E";
 
 const nearBlack = "#0C090D";
 
 const nearWhite = "#EEEEEE;";
 
-export const palette = palx("#3B8EE5");
+const red = fourth;
 
-const collection = { primary: primaryColor, secondary, third, fourth };
+const orange = third;
+
+const yellow = secondary;
+
+const green = "#09BC8A";
+
+const blue = primary;
+
+const indigo = "#4C66B5";
+
+const violet = "#6F4CB5";
+
+const purple = "#904CB5";
+
+const fuschia = "#C4529A";
+
+const collection = {
+  primary,
+  secondary,
+  third,
+  fourth,
+  red,
+  orange,
+  yellow,
+  green,
+  blue,
+  indigo,
+  violet,
+  purple,
+  fuschia
+};
 
 const lightenUp = (name, color) => {
   let light = {};

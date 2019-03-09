@@ -64,7 +64,7 @@ export const UserNav = () => {
             to="login"
           />
           <LI
-            icon={<FaRegister css={iconStyle} css={tw`text-lime`} />}
+            icon={<FaRegister css={iconStyle} css={tw`text-green`} />}
             label={t("register")}
             to="register"
           />

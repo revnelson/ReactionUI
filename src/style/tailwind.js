@@ -42,7 +42,7 @@ let defaultConfig = require("tailwindcss/defaultConfig")();
 |
 */
 
-import customColors, { palette } from "./colors";
+import customColors from "./colors";
 
 let colors = {
   transparent: "transparent",
@@ -60,139 +60,7 @@ let colors = {
   "grey-l3": "#ccc",
   "grey-l4": "#e6e6e6",
 
-  ...customColors,
-
-  "yellow-l5": palette.yellow[0],
-  "yellow-l4": palette.yellow[1],
-  "yellow-l3": palette.yellow[2],
-  "yellow-l2": palette.yellow[3],
-  "yellow-l1": palette.yellow[4],
-  yellow: palette.yellow[5],
-  "yellow-d1": palette.yellow[6],
-  "yellow-d2": palette.yellow[7],
-  "yellow-d3": palette.yellow[8],
-  "yellow-d4": palette.yellow[9],
-
-  "lime-l5": palette.lime[0],
-  "lime-l4": palette.lime[1],
-  "lime-l3": palette.lime[2],
-  "lime-l2": palette.lime[3],
-  "lime-l1": palette.lime[4],
-  lime: palette.lime[5],
-  "lime-d1": palette.lime[6],
-  "lime-d2": palette.lime[7],
-  "lime-d3": palette.lime[8],
-  "lime-d4": palette.lime[9],
-
-  "green-l5": palette.green[0],
-  "green-l4": palette.green[1],
-  "green-l3": palette.green[2],
-  "green-l2": palette.green[3],
-  "green-l1": palette.green[4],
-  green: palette.green[5],
-  "green-d1": palette.green[6],
-  "green-d2": palette.green[7],
-  "green-d3": palette.green[8],
-  "green-d4": palette.green[9],
-
-  "teal-l5": palette.teal[0],
-  "teal-l4": palette.teal[1],
-  "teal-l3": palette.teal[2],
-  "teal-l2": palette.teal[3],
-  "teal-l1": palette.teal[4],
-  teal: palette.teal[5],
-  "teal-d1": palette.teal[6],
-  "teal-d2": palette.teal[7],
-  "teal-d3": palette.teal[8],
-  "teal-d4": palette.teal[9],
-
-  "cyan-l5": palette.cyan[0],
-  "cyan-l4": palette.cyan[1],
-  "cyan-l3": palette.cyan[2],
-  "cyan-l2": palette.cyan[3],
-  "cyan-l1": palette.cyan[4],
-  cyan: "#16B1B5",
-  "cyan-d1": palette.cyan[6],
-  "cyan-d2": palette.cyan[7],
-  "cyan-d3": palette.cyan[8],
-  "cyan-d4": palette.cyan[9],
-
-  "blue-l5": palette.blue[0],
-  "blue-l4": palette.blue[1],
-  "blue-l3": palette.blue[2],
-  "blue-l2": palette.blue[3],
-  "blue-l1": palette.blue[4],
-  blue: palette.blue[5],
-  "blue-d1": palette.blue[6],
-  "blue-d2": palette.blue[7],
-  "blue-d3": palette.blue[8],
-  "blue-d4": palette.blue[9],
-
-  "indigo-l5": palette.indigo[0],
-  "indigo-l4": palette.indigo[1],
-  "indigo-l3": palette.indigo[2],
-  "indigo-l2": palette.indigo[3],
-  "indigo-l1": palette.indigo[4],
-  indigo: palette.indigo[5],
-  "indigo-d1": palette.indigo[6],
-  "indigo-d2": palette.indigo[7],
-  "indigo-d3": palette.indigo[8],
-  "indigo-d4": palette.indigo[9],
-
-  "violet-l5": palette.violet[0],
-  "violet-l4": palette.violet[1],
-  "violet-l3": palette.violet[2],
-  "violet-l2": palette.violet[3],
-  "violet-l1": palette.violet[4],
-  violet: palette.violet[5],
-  "violet-d1": palette.violet[6],
-  "violet-d2": palette.violet[7],
-  "violet-d3": palette.violet[8],
-  "violet-d4": palette.violet[9],
-
-  "fuschia-l5": palette.fuschia[0],
-  "fuschia-l4": palette.fuschia[1],
-  "fuschia-l3": palette.fuschia[2],
-  "fuschia-l2": palette.fuschia[3],
-  "fuschia-l1": palette.fuschia[4],
-  fuschia: palette.fuschia[5],
-  "fuschia-d1": palette.fuschia[6],
-  "fuschia-d2": palette.fuschia[7],
-  "fuschia-d3": palette.fuschia[8],
-  "fuschia-d4": palette.fuschia[9],
-
-  "pink-l5": palette.pink[0],
-  "pink-l4": palette.pink[1],
-  "pink-l3": palette.pink[2],
-  "pink-l2": palette.pink[3],
-  "pink-l1": palette.pink[4],
-  pink: palette.pink[5],
-  "pink-d1": palette.pink[6],
-  "pink-d2": palette.pink[7],
-  "pink-d3": palette.pink[8],
-  "pink-d4": palette.pink[9],
-
-  "red-l5": palette.red[0],
-  "red-l4": palette.red[1],
-  "red-l3": palette.red[2],
-  "red-l2": palette.red[3],
-  "red-l1": palette.red[4],
-  red: palette.red[5],
-  "red-d1": palette.red[6],
-  "red-d2": palette.red[7],
-  "red-d3": palette.red[8],
-  "red-d4": palette.red[9],
-
-  "orange-l5": palette.orange[0],
-  "orange-l4": palette.orange[1],
-  "orange-l3": palette.orange[2],
-  "orange-l2": palette.orange[3],
-  "orange-l1": palette.orange[4],
-  orange: palette.orange[5],
-  "orange-d1": palette.orange[6],
-  "orange-d2": palette.orange[7],
-  "orange-d3": palette.orange[8],
-  "orange-d4": palette.orange[9]
+  ...customColors
 };
 
 export default {
@@ -1004,21 +872,7 @@ export default {
     require("tailwindcss/plugins/container")({
       center: true,
       padding: "1rem"
-    }),
-    function({ addUtilities }) {
-      const transitions = {
-        ".transition": {
-          transition: "all .3s cubic-bezier(0.455, 0.03, 0.515, 0.955)"
-        },
-        ".transition-slow": {
-          transition: "all 2s cubic-bezier(0.455, 0.03, 0.515, 0.955)"
-        },
-        ".transition-ease": { transition: "all .3s ease" },
-        ".transition-slow-ease": { transition: "all 2s ease" }
-      };
-
-      addUtilities(transitions);
-    }
+    })
   ],
 
   /*

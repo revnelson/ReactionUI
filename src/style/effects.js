@@ -1,5 +1,5 @@
 import { css, keyframes } from "styled-components";
-import { primaryColor } from "./colors";
+import { primary as primaryColor } from "./colors";
 
 // Underline animation
 export const underlineAnimation = css`
