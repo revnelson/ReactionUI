@@ -13,7 +13,7 @@ module.exports = function(plop) {
         {
           type: "add",
           path:
-            "./src/shared/components/{{pascalCase componentName}}/{{pascalCase componentName}}.js",
+            "./src/components/{{pascalCase componentName}}/{{pascalCase componentName}}.js",
           templateFile: "./config/plop/component/component.js.plop"
         }
       ];
@@ -44,38 +44,38 @@ module.exports = function(plop) {
       const actions = [
         {
           type: "add",
-          path: "./src/shared/store/{{pascalCase storeName}}/index.js",
+          path: "./src/store/{{pascalCase storeName}}/index.js",
           templateFile: "./config/plop/store/index.js.plop"
         },
         {
           type: "add",
-          path: "./src/shared/store/{{pascalCase storeName}}/defaults.js",
+          path: "./src/store/{{pascalCase storeName}}/defaults.js",
           templateFile: "./config/plop/store/defaults.js.plop"
         },
         {
           type: "add",
-          path: "./src/shared/store/{{pascalCase storeName}}/queries.js",
+          path: "./src/store/{{pascalCase storeName}}/queries.js",
           templateFile: "./config/plop/store/queries.js.plop"
         },
         {
           type: "add",
-          path: "./src/shared/store/{{pascalCase storeName}}/mutations.js",
+          path: "./src/store/{{pascalCase storeName}}/mutations.js",
           templateFile: "./config/plop/store/mutations.js.plop"
         },
         {
           type: "add",
-          path: "./src/shared/store/{{pascalCase storeName}}/resolvers.js",
+          path: "./src/store/{{pascalCase storeName}}/resolvers.js",
           templateFile: "./config/plop/store/resolvers.js.plop"
         },
         {
           type: "modify",
-          path: "./src/shared/lib/apolloLinkState.js",
+          path: "./src/lib/apolloLinkState.js",
           pattern: /(import { withClientState } from "apollo-link-state";)/gi,
           template: `import { {{camelCase storeName}}Store } from "../store/{{pascalCase storeName}}";\r\nimport { withClientState } from "apollo-link-state";`
         },
         {
           type: "modify",
-          path: "./src/shared/lib/apolloLinkState.js",
+          path: "./src/lib/apolloLinkState.js",
           pattern: /(];)/gi,
           template: ", {{camelCase storeName}}Store];"
         }

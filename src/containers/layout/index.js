@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { SideMenu } from "./sideMenu";
 import { Header } from "./header";
 
 export const AppLayout = ({ children }) => {

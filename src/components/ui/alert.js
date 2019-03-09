@@ -1,7 +1,7 @@
 import React from "react";
-import { ReactComponent as InfoIcon } from "../../icons/regular/info-circle.svg";
-import { ReactComponent as DangerIcon } from "../../icons/regular/exclamation-circle.svg";
-import { ReactComponent as SuccessIcon } from "../../icons/regular/check-circle.svg";
+import { ReactComponent as InfoIcon } from "../../icons/solid/info-circle.svg";
+import { ReactComponent as DangerIcon } from "../../icons/solid/exclamation-circle.svg";
+import { ReactComponent as SuccessIcon } from "../../icons/solid/check-circle.svg";
 
 export const Alert = ({ message, status, title }) => {
   const backgrounds = {

@@ -1,10 +1,9 @@
 import React from "react";
-import { ReactComponent as FaLanguage } from "../../icons/regular/language.svg";
-import { ReactComponent as FaSearch } from "../../icons/regular/search.svg";
-import { ReactComponent as FaRobot } from "../../icons/regular/robot.svg";
+import { ReactComponent as FaLanguage } from "../../icons/solid/language.svg";
+import { ReactComponent as FaSearch } from "../../icons/solid/search.svg";
+import { ReactComponent as FaRobot } from "../../icons/solid/robot.svg";
 import { ReactComponent as FaSmiley } from "../../icons/regular/smile-beam.svg";
-import { ReactComponent as FaSettings } from "../../icons/regular/cogs.svg";
-import { ReactComponent as FaSignOut } from "../../icons/regular/sign-out.svg";
+import { ReactComponent as FaSettings } from "../../icons/solid/cogs.svg";
 import { LangSelector } from "../../components/langSelector";
 import { UserNav } from "../../components/userNav";
 

@@ -12,5 +12,3 @@ build/
 src/ssr/imported.js
 
 .compressrc
-
-src/icons/

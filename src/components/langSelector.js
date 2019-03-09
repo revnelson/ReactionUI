@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import Cookie from "js-cookie";
-import { ReactComponent as FaLanguage } from "../icons/regular/language.svg";
+import { ReactComponent as FaLanguage } from "../icons/solid/language.svg";
 import { ReactComponent as USAFlag } from "../icons/flags/4x3/us.svg";
 import { ReactComponent as GermanyFlag } from "../icons/flags/4x3/de.svg";
 import { ReactComponent as ChinaFlag } from "../icons/flags/4x3/cn.svg";

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { ReactComponent as FaUser } from "../icons/solid/user.svg";
-import { ReactComponent as FaLogin } from "../icons/regular/lock-open.svg";
-import { ReactComponent as FaLogout } from "../icons/regular/lock.svg";
-import { ReactComponent as FaRegister } from "../icons/regular/user-plus.svg";
+import { ReactComponent as FaLogin } from "../icons/solid/lock-open.svg";
+import { ReactComponent as FaLogout } from "../icons/solid/lock.svg";
+import { ReactComponent as FaRegister } from "../icons/solid/user-plus.svg";
 import { Dropdown } from "./ui";
 import { useTranslation } from "react-i18next";
 import { underlineAnimation } from "../style/effects";
