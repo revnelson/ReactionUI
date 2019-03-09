@@ -1,7 +1,6 @@
 import { authQuery } from "./queries";
 
 export const setUser = (_, { user }, { cache }) => {
-  console.log("RESOLVER: ", user);
   const data = {
     auth: {
       id: user.id,
