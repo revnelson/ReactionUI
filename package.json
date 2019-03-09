@@ -35,7 +35,7 @@
     "serve": "yarn build && babel-node build/server",
     "start": "yarn generate-imported-components && babel-node tools/run start",
     "start:analyzer": "webpack-bundle-analyzer build/client/static/bundle-stats.json",
-    "pm2": "yarn build && pm2 start build/server/index.js --name $npm_package_name",
+    "pm2": "yarn build && pm2 start build/server.js --name $npm_package_name",
     "pm2:restart": "yarn build && pm2 restart $npm_package_name",
     "pm2:stop": "pm2 stop $npm_package_name"
   },
