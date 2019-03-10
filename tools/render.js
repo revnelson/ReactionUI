@@ -1,7 +1,6 @@
 import path from "path";
 import fetch from "node-fetch";
 import { writeFile, makeDir } from "./lib/fs";
-import runServer from "./runServer";
 
 // Enter your paths here which you want to render as static
 // Example:
@@ -32,7 +31,6 @@ async function render() {
   // ));
 
   routes.map(async (route, index) => {
-    console.group("RENDER ROUTE: ", route);
     const url = `http://localhost:${process.env.PORT}${route}`;
     const fileName = route.endsWith("/")
       ? "index.html"
