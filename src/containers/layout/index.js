@@ -1,10 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Header } from "./header";
 
 export const AppLayout = ({ children }) => {
-  const [sideOut, setSideOut] = useState(false);
-  const [mobile, setMobile] = useState(false);
-
   return (
     <React.Fragment>
       <Header />

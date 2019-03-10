@@ -1,18 +1,21 @@
 import React, { useState } from "react";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
-import { useApolloClient } from "react-apollo-hooks";
+import { useMutation } from "react-apollo-hooks";
+import { withRouter } from "react-router-dom";
 import { loginUserMutation } from "../api";
 import { setUserMutation } from "../store/Auth/mutations";
 import { useTranslation } from "react-i18next";
 
 const formLabelStyle = tw`bg-transparent border-b m-auto block border-grey w-full mb-6 text-grey-darker pb-1`;
 
-export const LoginForm = ({ history, match }) => {
+export const LoginForm = withRouter(({ history, match }) => {
   const [error, setError] = useState(null);
   const [errorOpen, setErrorOpen] = useState(false);
   const [modalForgot, setModalForgot] = useState(false);
-  const client = useApolloClient();
+
+  const loginUserHook = useMutation(loginUserMutation);
+  const setUserHook = useMutation(setUserMutation);
 
   const [t] = useTranslation("common");
 
@@ -28,37 +31,39 @@ export const LoginForm = ({ history, match }) => {
 
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
-      const { data } = await client.mutate({
-        mutation: loginUserMutation,
+      const {
+        data: {
+          loginUser: { user }
+        }
+      } = await loginUserHook({
         variables: {
           username: values.email,
           password: values.password
         }
       });
 
-      const { user } = data.loginUser ? data.loginUser : "";
-
-      user && setUserMutation({ variables: { user } });
+      user && setUserHook({ variables: { user } });
 
       const destination = match.params.next ? `/${match.params.next}` : "/";
 
-      notification.success({
-        message: t("login-successful"),
-        duration: 1,
-        onClose: () => {},
-        onClick: () => {
-          setSubmitting(false);
-          history.push(destination);
-        }
-      });
+      // notification.success({
+      //   message: t("login-successful"),
+      //   duration: 1,
+      //   onClose: () => {},
+      //   onClick: () => {
+      //     setSubmitting(false);
+      //     history.push(destination);
+      //   }
+      // });
       setSubmitting(false);
       history.push(destination);
     } catch (e) {
+      console.log("LOGIN FORM SUBMITTING ERROR: ", e);
       setError(e.message);
       setSubmitting(false);
     }
   };
-  console.log(tw`transition`);
+
   return (
     <div
       css={tw`flex-1 rounded h-full overflow-hidden shadow sm:flex max-w-50`}
@@ -83,6 +88,7 @@ export const LoginForm = ({ history, match }) => {
                 </label>
                 <Field
                   css={tw`bg-transparent border-b m-auto block border-grey w-full mb-6 text-grey-darker pb-1`}
+                  autoComplete="username"
                   type="text"
                   name="email"
                 />
@@ -94,7 +100,12 @@ export const LoginForm = ({ history, match }) => {
                 <label id="password" css={tw`text-xs text-grey`}>
                   {t("password")}
                 </label>
-                <Field css={formLabelStyle} type="password" name="password" />
+                <Field
+                  css={formLabelStyle}
+                  autoComplete="current-password"
+                  type="password"
+                  name="password"
+                />
                 <ErrorMessage
                   css={tw`text-xs text-grey -mt-4 text-fuschia`}
                   name="password"
@@ -115,4 +126,4 @@ export const LoginForm = ({ history, match }) => {
       </div>
     </div>
   );
-};
+});

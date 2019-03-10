@@ -1,9 +1,14 @@
 import React from "react";
 import Helmet from "react-helmet-async";
+import { Redirect } from "react-router-dom";
 import { LoginForm } from "../components/loginFormik";
-import { Alert } from "../components/ui";
+import { useAuth } from "../lib/hooks";
 
 const LoginPage = () => {
+  const { loggedIn } = useAuth();
+
+  if (loggedIn) return <Redirect to={{ pathname: "/about" }} />;
+
   return (
     <React.Fragment>
       <Helmet>
