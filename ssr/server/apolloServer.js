@@ -1,9 +1,8 @@
 import React from "react";
-import { withAuthStore } from "../../src/store/Auth";
+import { useAuth } from "../../src/lib/hooks";
 
-const UserInjector = ({ children, setUserMutation, user }) => {
-  user && setUserMutation({ variables: { user } });
+export const ApolloUserInjector = ({ children, user }) => {
+  const { setUser } = useAuth();
+  user && setUser({ user });
   return children;
 };
-
-export const ApolloUserInjector = withAuthStore(UserInjector);
