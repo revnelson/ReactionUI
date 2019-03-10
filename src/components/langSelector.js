@@ -3,6 +3,8 @@ import { useTranslation } from "react-i18next";
 import Cookie from "js-cookie";
 import { ReactComponent as FaLanguage } from "../icons/solid/language.svg";
 import { ReactComponent as USAFlag } from "../icons/flags/4x3/us.svg";
+import { ReactComponent as UkraineFlag } from "../icons/flags/4x3/ua.svg";
+import { ReactComponent as RussiaFlag } from "../icons/flags/4x3/ru.svg";
 import { ReactComponent as GermanyFlag } from "../icons/flags/4x3/de.svg";
 import { ReactComponent as ChinaFlag } from "../icons/flags/4x3/cn.svg";
 import { Dropdown } from "./ui";
@@ -48,6 +50,18 @@ export const LangSelector = () => {
             <USAFlag css={flagStyle} />
             <div css={i18n.language === "en" ? "" : underlineAnimation}>
               English
+            </div>
+          </LI>
+          <LI lang="ua">
+            <UkraineFlag css={flagStyle} />
+            <div css={i18n.language === "ua" ? "" : underlineAnimation}>
+              Українська
+            </div>
+          </LI>
+          <LI lang="ru">
+            <RussiaFlag css={flagStyle} />
+            <div css={i18n.language === "ru" ? "" : underlineAnimation}>
+              Русский
             </div>
           </LI>
           <LI lang="de">

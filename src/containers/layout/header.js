@@ -4,8 +4,10 @@ import { LangSelector } from "../../components/langSelector";
 import { UserNav } from "../../components/userNav";
 import { underlineAnimation } from "../../style/effects";
 import { Search } from "../../components/search";
+import { useTranslation } from "react-i18next";
 
 export const Header = () => {
+  const [t] = useTranslation("common");
   return (
     <nav
       css={tw`bg-white relative text-near-black shadow px-2 mt-0 h-auto md:h-auto py-2 flex justify-around items-center fixed w-full z-1 pin-t`}
@@ -27,10 +29,10 @@ export const Header = () => {
               to="/about"
               css={tw`inline-block text-near-black no-underline hover:text-primary py-2 mx-4`}
               className="transition"
-              activeStyle={tw`text-fourth border-0`}
+              activeStyle={tw`text-fourth focus:border-0`}
               css={underlineAnimation}
             >
-              About
+              {t("features")}
             </NavLink>
           </li>
           <li css={tw`flex-1 md:flex-none md:mr-3`}>

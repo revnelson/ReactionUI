@@ -1,0 +1,16 @@
+{
+  "features": "Функции",
+  "i18n-example": "i18n пример",
+  "i18n-support": "i18n опора (через React i18Next)",
+  "email": "Адрес",
+  "password": "Пароль",
+  "email-error": "Недопустимый электронный адрес",
+  "password-error": "Неправильный пароль",
+  "login": "Входить",
+  "logout": "Выход",
+  "register": "Регистрировать",
+  "sign-up": "Регистрировать",
+  "cancel": "Отмена",
+  "submit": "Отправить",
+  "site-name": "ReactionUI"
+}

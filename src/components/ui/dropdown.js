@@ -21,7 +21,7 @@ export const Dropdown = ({
 
   const containerStyle = tw`cursor-pointer rounded border-primary `;
 
-  const dropStyle = tw`absolute mt-5 mr-2`;
+  const dropStyle = tw`absolute mt-4 mr-2`;
 
   const alignRightStyle = tw`pin-r`;
 

@@ -75,5 +75,3 @@ export const UserNav = () => {
     </Dropdown>
   );
 };
-
-// TODO - Close menu when item clicked

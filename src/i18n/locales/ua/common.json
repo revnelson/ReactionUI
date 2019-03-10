@@ -1,0 +1,16 @@
+{
+  "features": "Засоби",
+  "i18n-example": "i18n зразок",
+  "i18n-support": "i18n опора (через React i18Next)",
+  "email": "Адрес електронної пошти",
+  "password": "Пароль",
+  "email-error": "Неприпустима адреса електронної пошти",
+  "password-error": "Неприпустимий пароль",
+  "login": "ідентифікатор входу",
+  "logout": "Вихід",
+  "register": "Реєструватися",
+  "sign-up": "Реєструватися",
+  "cancel": "Скасувати",
+  "submit": "надіслати",
+  "site-name": "ReactionUI"
+}
