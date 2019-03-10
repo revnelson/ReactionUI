@@ -1,10 +1,10 @@
 import React from "react";
 import Helmet from "react-helmet-async";
 import { MyForm } from "../components/registerForm";
-import { useAuth } from "../lib/hooks";
+import { useLogoutUser } from "../lib/hooks";
 
 const RegisterPage = () => {
-  const { logoutUser } = useAuth();
+  const { logoutUser } = useLogoutUser();
   return (
     <React.Fragment>
       <Helmet>

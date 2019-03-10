@@ -4,7 +4,7 @@ import importComponent from "react-imported-component";
 import { LoadingComponent } from "../components/loading";
 import { ErrorComponent } from "../components/error";
 import { ProtectedRoute } from "../lib/routeProtector";
-import { useAuth } from "../lib/hooks";
+import { useLogoutUser } from "../lib/hooks";
 
 const fallbacks = {
   LoadingComponent,
@@ -32,7 +32,7 @@ const Register = importComponent(
 );
 
 const Logout = () => {
-  const { logoutUser } = useAuth();
+  const { logoutUser } = useLogoutUser();
   logoutUser();
   return null;
 };

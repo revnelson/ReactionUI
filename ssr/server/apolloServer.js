@@ -1,8 +1,8 @@
 import React from "react";
-import { useAuth } from "../../src/lib/hooks";
+import { useSetUser } from "../../src/lib/hooks";
 
 export const ApolloUserInjector = ({ children, user }) => {
-  const { setUser } = useAuth();
+  const { setUser } = useSetUser();
   user && setUser({ user });
   return children;
 };

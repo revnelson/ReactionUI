@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { checkAuthQuery } from "../../src/api";
 import { useQuery } from "react-apollo-hooks";
-import { useAuth } from "../../src/lib/hooks";
+import { useAuth, useSetUser } from "../../src/lib/hooks";
 
 export const UserInjector = ({ children }) => {
-  const { loggedIn, setUser } = useAuth();
+  const { loggedIn } = useAuth();
+  const { setUser } = useSetUser();
   const {
     data: { checkAuth }
   } = useQuery(checkAuthQuery);

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { css, keyframes } from "styled-components";
 import { useClickOutside } from "../../lib/hooks";
 import { slideRightAnimation } from "../../style/effects";
 

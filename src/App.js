@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { GlobalStyle } from "./style/globalStyle";
 
 const App = () => {
-  const [i18n] = useTranslation();
+  const [t, i18n] = useTranslation();
   return (
     <React.Fragment>
       <Helmet htmlAttributes={{ lang: i18n.language }} />
