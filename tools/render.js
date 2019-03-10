@@ -1,6 +1,9 @@
 import path from "path";
+import dotenv from "dotenv";
 import fetch from "node-fetch";
 import { writeFile, makeDir } from "./lib/fs";
+
+dotenv.config();
 
 // Enter your paths here which you want to render as static
 // Example:
@@ -13,9 +16,7 @@ import { writeFile, makeDir } from "./lib/fs";
 // ];
 const routes = [
   "/",
-  // "/contact",
   "/login",
-  // "/register",
   "/about",
   "/register"
   // "/privacy",
@@ -29,7 +30,6 @@ async function render() {
   //   `/product/${product.uri}`,
   //   `/product/${product.uri}/specs`
   // ));
-
   routes.map(async (route, index) => {
     const url = `http://localhost:${process.env.PORT}${route}`;
     const fileName = route.endsWith("/")

@@ -6,36 +6,29 @@ import { ErrorComponent } from "../components/error";
 import { ProtectedRoute } from "../lib/routeProtector";
 import { useAuth } from "../lib/hooks";
 
+const fallbacks = {
+  LoadingComponent,
+  ErrorComponent
+};
+
 const Home = importComponent(
   () => import(/* webpackChunkName: 'home' */ "./home"),
-  {
-    LoadingComponent,
-    ErrorComponent
-  }
+  fallbacks
 );
 
 const About = importComponent(
   () => import(/* webpackChunkName: 'about' */ "./about"),
-  {
-    LoadingComponent,
-    ErrorComponent
-  }
+  fallbacks
 );
 
 const Login = importComponent(
   () => import(/* webpackChunkName: 'login' */ "./login"),
-  {
-    LoadingComponent,
-    ErrorComponent
-  }
+  fallbacks
 );
 
 const Register = importComponent(
   () => import(/* webpackChunkName: 'register' */ "./register"),
-  {
-    LoadingComponent,
-    ErrorComponent
-  }
+  fallbacks
 );
 
 const Logout = () => {
