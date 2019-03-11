@@ -3,10 +3,12 @@ import { useTranslation } from "react-i18next";
 import Cookie from "js-cookie";
 import { ReactComponent as FaLanguage } from "../icons/solid/language.svg";
 import { ReactComponent as USAFlag } from "../icons/flags/4x3/us.svg";
-import { ReactComponent as UkraineFlag } from "../icons/flags/4x3/ua.svg";
-import { ReactComponent as RussiaFlag } from "../icons/flags/4x3/ru.svg";
-import { ReactComponent as GermanyFlag } from "../icons/flags/4x3/de.svg";
 import { ReactComponent as ChinaFlag } from "../icons/flags/4x3/cn.svg";
+import { ReactComponent as GermanyFlag } from "../icons/flags/4x3/de.svg";
+import { ReactComponent as SpainFlag } from "../icons/flags/4x3/es.svg";
+import { ReactComponent as ItalyFlag } from "../icons/flags/4x3/it.svg";
+import { ReactComponent as RussiaFlag } from "../icons/flags/4x3/ru.svg";
+import { ReactComponent as UkraineFlag } from "../icons/flags/4x3/ua.svg";
 import { Dropdown } from "./ui";
 import { underlineAnimation } from "../style/effects";
 
@@ -52,16 +54,10 @@ export const LangSelector = () => {
               English
             </div>
           </LI>
-          <LI lang="ua">
-            <UkraineFlag css={flagStyle} />
-            <div css={i18n.language === "ua" ? "" : underlineAnimation}>
-              Українська
-            </div>
-          </LI>
-          <LI lang="ru">
-            <RussiaFlag css={flagStyle} />
-            <div css={i18n.language === "ru" ? "" : underlineAnimation}>
-              Русский
+          <LI lang="zh">
+            <ChinaFlag css={flagStyle} />
+            <div css={i18n.language === "zh" ? "" : underlineAnimation}>
+              中文
             </div>
           </LI>
           <LI lang="de">
@@ -70,10 +66,28 @@ export const LangSelector = () => {
               Deutsche
             </div>
           </LI>
-          <LI lang="zh">
-            <ChinaFlag css={flagStyle} />
-            <div css={i18n.language === "zh" ? "" : underlineAnimation}>
-              中文
+          <LI lang="es">
+            <SpainFlag css={flagStyle} />
+            <div css={i18n.language === "es" ? "" : underlineAnimation}>
+              España
+            </div>
+          </LI>
+          <LI lang="it">
+            <ItalyFlag css={flagStyle} />
+            <div css={i18n.language === "it" ? "" : underlineAnimation}>
+              Italia
+            </div>
+          </LI>
+          <LI lang="ru">
+            <RussiaFlag css={flagStyle} />
+            <div css={i18n.language === "ru" ? "" : underlineAnimation}>
+              Русский
+            </div>
+          </LI>
+          <LI lang="ua">
+            <UkraineFlag css={flagStyle} />
+            <div css={i18n.language === "ua" ? "" : underlineAnimation}>
+              Українська
             </div>
           </LI>
         </ul>

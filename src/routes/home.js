@@ -16,6 +16,7 @@ const Home = () => {
       <div css={divStyle}>
         <ReactLogo
           css={tw`h-16 w-16 fill-current text-primary hover:text-fourth inline-block`}
+          className="transition"
         />
       </div>
       <div css={divStyle}>

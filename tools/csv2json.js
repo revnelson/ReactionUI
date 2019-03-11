@@ -79,7 +79,7 @@ program.args.forEach(arg => {
           langs = o_langs.slice();
           while (((v = entry.shift()), (lang = langs.shift()))) {
             lang = lang.toLowerCase();
-            objectPath.set(buffer[lang], key, v);
+            v && objectPath.set(buffer[lang], key, v);
           }
         }
 
