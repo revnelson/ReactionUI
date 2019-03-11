@@ -93,7 +93,11 @@ program.args.forEach(arg => {
             .slice(0, -1)
             .join(".");
 
+          // Remove duplicate namespace name from Apple Numbers
+          title = title.split("-")[0];
+
           title = [title, "json"].join(".");
+          console.log("TITLE: ", title);
 
           target_file = path.join(p, lang, path.basename(title));
 

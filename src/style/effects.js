@@ -10,7 +10,7 @@ export const underlineAnimation = css`
   :before {
     content: "";
     position: absolute;
-    width: 90%;
+    width: 100%;
     height: 1px;
     bottom: 0;
     left: 0;

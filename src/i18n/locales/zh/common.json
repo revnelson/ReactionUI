@@ -1,16 +1,12 @@
 {
+  "cancel": "取消",
+  "email": "电子邮件",
   "features": "功能",
   "i18n-example": "i18n 代码示例",
   "i18n-support": "i18n 支持（经由React i18Next)",
-  "email": "电子邮件",
-  "password": "密码",
-  "email-error": "无效的电子邮件",
-  "password-error": "无效密码",
   "login": "登录",
   "logout": "注销",
+  "password": "密码",
   "register": "注册",
-  "sign-up": "注册",
-  "cancel": "取消",
-  "submit": "提交",
-  "site-name": "ReactionUI"
+  "submit": "提交"
 }

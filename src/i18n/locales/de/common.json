@@ -1,16 +1,12 @@
 {
+  "cancel": "Abbrechen",
+  "email": "E-Mail",
   "features": "Funktionen",
   "i18n-example": "i18n Beispiel",
   "i18n-support": "i18n Unterstützung (durch React i18Next)",
-  "email": "E-Mail",
-  "password": "Kennwort",
-  "email-error": "Ungültige E-Mail",
-  "password-error": "Ungültiges Kennwort",
   "login": "Anmelde",
   "logout": "Abmelden",
+  "password": "Kennwort",
   "register": "Registrieren",
-  "sign-up": "Registrieren",
-  "cancel": "Abbrechen",
-  "submit": "Absenden",
-  "site-name": "ReactionUI"
+  "submit": "Absenden"
 }
