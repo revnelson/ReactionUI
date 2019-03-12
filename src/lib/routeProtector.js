@@ -21,7 +21,7 @@ export const ProtectedRoute = ({
           <Redirect
             to={{
               pathname: loggedIn
-                ? "/about"
+                ? "/profile"
                 : pathname === "/logout"
                 ? "/"
                 : `/login${pathname}`

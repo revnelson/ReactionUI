@@ -16,8 +16,8 @@ const Home = importComponent(
   fallbacks
 );
 
-const About = importComponent(
-  () => import(/* webpackChunkName: 'about' */ "./about"),
+const Features = importComponent(
+  () => import(/* webpackChunkName: 'features' */ "./features"),
   fallbacks
 );
 
@@ -31,6 +31,11 @@ const Register = importComponent(
   fallbacks
 );
 
+const Profile = importComponent(
+  () => import(/* webpackChunkName: 'profile' */ "./profile"),
+  fallbacks
+);
+
 const Logout = () => {
   const { logoutUser } = useLogoutUser();
   logoutUser();
@@ -40,7 +45,8 @@ const Logout = () => {
 export const Routes = () => (
   <Switch>
     <Route exact path="/" component={() => <Home />} />
-    <ProtectedRoute path="/about" component={() => <About />} />
+    <Route path="/features" component={() => <Features />} />
+    <ProtectedRoute path="/profile" component={() => <Profile />} />
     <ProtectedRoute
       publicOnly
       path="/login/:next?"

@@ -6,6 +6,7 @@ import { ReactComponent as USAFlag } from "../icons/flags/4x3/us.svg";
 import { ReactComponent as ChinaFlag } from "../icons/flags/4x3/cn.svg";
 import { ReactComponent as GermanyFlag } from "../icons/flags/4x3/de.svg";
 import { ReactComponent as SpainFlag } from "../icons/flags/4x3/es.svg";
+import { ReactComponent as FranceFlag } from "../icons/flags/4x3/fr.svg";
 import { ReactComponent as ItalyFlag } from "../icons/flags/4x3/it.svg";
 import { ReactComponent as RussiaFlag } from "../icons/flags/4x3/ru.svg";
 import { ReactComponent as UkraineFlag } from "../icons/flags/4x3/ua.svg";
@@ -70,6 +71,12 @@ export const LangSelector = () => {
             <SpainFlag css={flagStyle} />
             <div css={i18n.language === "es" ? "" : underlineAnimation}>
               España
+            </div>
+          </LI>
+          <LI lang="fr">
+            <FranceFlag css={flagStyle} />
+            <div css={i18n.language === "fr" ? "" : underlineAnimation}>
+              Français
             </div>
           </LI>
           <LI lang="it">

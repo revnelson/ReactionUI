@@ -2716,12 +2716,13 @@ copy-descriptor@^0.1.0:
   integrity sha1-Z29us8OZl8LuGsOpJP1hJHSPV40=
 
 copy-webpack-plugin@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/copy-webpack-plugin/-/copy-webpack-plugin-5.0.0.tgz#db3269ab83e8a2c3316c1bc9cba54019bbcf5c17"
-  integrity sha512-iiDj+8nnZeW/i8vYJ3+ABSZkOefJnDYIGLojiZKKFDvf1wcEInABXH1+hN7axQMn04qvJxKjgVOee0e14XPtCg==
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/copy-webpack-plugin/-/copy-webpack-plugin-5.0.1.tgz#97997989cc5bc69976bf64f660bd19663481f089"
+  integrity sha512-yMTURAkYZO/6h6pGMbHQl2jpKtRNC+0Cy/4kRRP6qUHmpbGGAzNnyMecE6aHgGFCb4ksrL3YcDqYGb8ds3J9cw==
   dependencies:
     cacache "^11.3.1"
     find-cache-dir "^2.0.0"
+    glob-parent "^3.1.0"
     globby "^7.1.1"
     is-glob "^4.0.0"
     loader-utils "^1.1.0"
@@ -3120,9 +3121,9 @@ csso@^3.5.1:
     css-tree "1.0.0-alpha.29"
 
 csv-parse@^4.3.3:
-  version "4.3.3"
-  resolved "https://registry.yarnpkg.com/csv-parse/-/csv-parse-4.3.3.tgz#7aa120da34ce1a9d911fbb89c2ae313dcdaf7324"
-  integrity sha512-bZ+AZjm2LlWEp5+TKeFeXDldduCUUaxEif+KUv+zvAwmCvCKTqeSHVEyxztGCQ6OE+87ObRq4NsCmg91SuJbhQ==
+  version "4.3.4"
+  resolved "https://registry.yarnpkg.com/csv-parse/-/csv-parse-4.3.4.tgz#fc896c170ebbdf6fb286de85c41bbaea4973d25f"
+  integrity sha512-M1R4WL+vt81+GnkKzi0s1qQM6WXvHQKDecNkpozzAEG8LHvIW9bq5eBnOKFQn50fTuAos7JodBh/07MK+J6G2Q==
 
 cyclist@~0.2.2:
   version "0.2.2"
@@ -8318,9 +8319,9 @@ react-hot-loader@^4.7.1:
     source-map "^0.7.3"
 
 react-i18next@^10.2.0:
-  version "10.3.1"
-  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-10.3.1.tgz#e88292c0d61d4d82603cf8b8ef4499a2411d83f9"
-  integrity sha512-WGKAz360iAAFurdYYpR+s42UEiHtATaAXWwi3Qr1VvGVWNGLiU0L7B4JRHJtByFyG18GKVcewheDNwyXFu3QPQ==
+  version "10.4.1"
+  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-10.4.1.tgz#e3d4d4f629f101cc85db067345b500fd93139134"
+  integrity sha512-h9n+pbjkVmcYRz2khMI0AWQsYkfqJa2A0LWQrixx3gooOwOp2Z6LfOljjFMk48FSk9FVS/j4sqmnSqXaliIiww==
   dependencies:
     "@babel/runtime" "^7.3.1"
     html-parse-stringify2 "2.0.1"

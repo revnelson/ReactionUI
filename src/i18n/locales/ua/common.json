@@ -2,11 +2,14 @@
   "cancel": "Скасувати",
   "email": "Адрес електронної пошти",
   "features": "Засоби",
+  "framework": "інфраструктура",
   "i18n-example": "i18n зразок",
   "i18n-support": "i18n опора (через React i18Next)",
   "login": "ідентифікатор входу",
   "logout": "Вихід",
   "password": "Пароль",
+  "profile": "Профіль",
   "register": "Реєструватися",
+  "required": "Потрібно",
   "submit": "надіслати"
 }

@@ -1,3 +1,4 @@
+import { appStore } from "../store/App";
 import { authStore } from "../store/Auth";
 
 // Add store imports above ^
@@ -5,7 +6,7 @@ import { authStore } from "../store/Auth";
 /**
  * Local Data Stores
  */
-const STORES = [authStore];
+const STORES = [appStore, authStore];
 
 /**
  * Map the Mutation handlers and Default Values of our local state

@@ -1,10 +1,10 @@
-// import gql from "graphql-tag";
+import gql from "graphql-tag";
 
-// export const collapsedToggleQuery = gql`
-//   mutation collapsedToggle {
-//     collapsedToggle @client
-//   }
-// `;
+export const sidebarToggleMutation = gql`
+  mutation sidebarToggle($state: Boolean) {
+    sidebarToggle(state: $state) @client
+  }
+`;
 
 // export const openDrawerToggleQuery = gql`
 //   mutation openDrawerToggle {

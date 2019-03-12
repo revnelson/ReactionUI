@@ -1,17 +1,18 @@
 key,en,zh,ua,ru,de,es,it,fr
-cancel,Cancel,取消,Скасувати,Отмена,Abbrechen,,,
-email,Email,电子邮件,Адрес електронної пошти,Адрес,E-Mail,,,
-features,Features,功能,Засоби,Функции,Funktionen,,,
-i18n-example,i18n Example,i18n 代码示例,i18n зразок,i18n пример,i18n Beispiel,,,
-i18n-support,i18n support (via React i18Next),i18n 支持（经由React i18Next),i18n опора (через React i18Next),i18n опора (через React i18Next),i18n Unterstützung (durch React i18Next),,,
-login,Login,登录,ідентифікатор входу,Входить,Anmelde,,,
-logout,Logout,注销,Вихід,Выход,Abmelden,,,
-password,Password,密码,Пароль,Пароль,Kennwort,,,
-register,Register,注册,Реєструватися,Регистрировать,Registrieren,,,
+cancel,Cancel,取消,Скасувати,Отмена,Abbrechen,Cancelar,Annulla,Annuler
+email,Email,电子邮件,Адрес електронної пошти,Адрес,E-Mail,Correo electrónico,E-Mail,E-Mail
+features,Features,功能,Засоби,Функции,Funktionen,Características,Scopri,Fonctionnalités
+framework,Framework,框架,інфраструктура,Платформа,Framework,Marco,Framework,Infrastructure
+i18n-example,i18n example,i18n 代码示例,i18n зразок,i18n пример,i18n beispiel,Ejemplo de i18n,Esempio di i18n,Exemple de i18n
+i18n-support,i18n support (via React i18Next),i18n 支持（经由React i18Next),i18n опора (через React i18Next),i18n опора (через React i18Next),i18n Unterstützung (durch React i18Next),i18n Soporte,i18n supporto,i18n support
+login,Login,登录,ідентифікатор входу,Входить,Anmelde,Iniciar sesión,Accedere,Ouvrir une session
+logout,Logout,注销,Вихід,Выход,Abmelden,Cerrar sesión,Chiusura sessione,Déconnexion
+password,Password,密码,Пароль,Пароль,Kennwort,Contraseña,Password,Mot de passe
+profile,Profile,个人资料,Профіль,Профиль,Profil,Perfil,Profilo,Profil
+register,Register,注册,Реєструватися,Регистрировать,Registrieren,Registrar,Registrare,S’inscrire
+required,Required,必需,Потрібно,Обязательное,Erforderliche,Obligatorio,Obbligatorio,Obligatoire
 site-name,ReactionUI,,,,,,,
-submit,Submit,提交,надіслати,Отправить,Absenden,,,
-,,,,,,,,
-,,,,,,,,
+submit,Submit,提交,надіслати,Отправить,Absenden,Enviar,Inviare,Envoyer
 ,,,,,,,,
 ,,,,,,,,
 ,,,,,,,,

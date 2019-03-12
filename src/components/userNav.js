@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { ReactComponent as FaUser } from "../icons/solid/user.svg";
 import { ReactComponent as FaLogin } from "../icons/solid/lock-open.svg";
 import { ReactComponent as FaLogout } from "../icons/solid/lock.svg";
+import { ReactComponent as FaProfile } from "../icons/solid/portrait.svg";
 import { ReactComponent as FaRegister } from "../icons/solid/user-plus.svg";
+import { ReactComponent as FaUser } from "../icons/solid/user.svg";
 import { Dropdown } from "./ui";
 import { useTranslation } from "react-i18next";
 import { underlineAnimation } from "../style/effects";
@@ -51,11 +52,18 @@ export const UserNav = () => {
       <div css={tw`rounded bg-white text-near-black p-2 shadow`}>
         <ul css={`list-reset block`}>
           {loggedIn ? (
-            <LI
-              icon={<FaLogout css={iconStyle} css={tw`text-fourth`} />}
-              label={t("logout")}
-              to="/logout"
-            />
+            <React.Fragment>
+              <LI
+                icon={<FaProfile css={iconStyle} css={tw`text-fourth`} />}
+                label={t("profile")}
+                to="/profile"
+              />
+              <LI
+                icon={<FaLogout css={iconStyle} css={tw`text-fourth`} />}
+                label={t("logout")}
+                to="/logout"
+              />
+            </React.Fragment>
           ) : (
             <React.Fragment>
               <LI

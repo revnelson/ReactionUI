@@ -1,17 +1,18 @@
-// export const collapsedToggle = (_, none, { cache }) => {
-//   const collapsed = !cache.readQuery({ query: appCollapsedQuery }).app
-//     .collapsed;
+import { appQuery } from "./queries";
 
-//   const data = {
-//     app: {
-//       collapsed,
-//       __typename: "app"
-//     }
-//   };
+export const sidebarToggle = (_, { state }, { cache }) => {
+  const sidebar = state;
 
-//   cache.writeData({ data });
-//   return null;
-// };
+  const data = {
+    app: {
+      sidebar,
+      __typename: "app"
+    }
+  };
+
+  cache.writeData({ data });
+  return null;
+};
 
 // export const openDrawerToggle = (_, none, { cache }) => {
 //   const openDrawer = !cache.readQuery({ query: appOpenDrawerQuery }).app

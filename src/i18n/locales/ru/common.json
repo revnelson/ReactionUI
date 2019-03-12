@@ -2,11 +2,14 @@
   "cancel": "Отмена",
   "email": "Адрес",
   "features": "Функции",
+  "framework": "Платформа",
   "i18n-example": "i18n пример",
   "i18n-support": "i18n опора (через React i18Next)",
   "login": "Входить",
   "logout": "Выход",
   "password": "Пароль",
+  "profile": "Профиль",
   "register": "Регистрировать",
+  "required": "Обязательное",
   "submit": "Отправить"
 }

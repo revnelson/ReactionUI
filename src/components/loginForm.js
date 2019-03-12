@@ -17,16 +17,16 @@ export const LoginForm = withRouter(({ history, match }) => {
   const loginUserHook = useMutation(loginUserMutation);
   const setUserHook = useMutation(setUserMutation);
 
-  const [t] = useTranslation("common");
+  const [t] = useTranslation(["common", "auth"]);
 
   const LoginSchema = Yup.object().shape({
-    // email: Yup.string()
-    //   .email("Invalid email")
-    //   .required("Required"),
-    // password: Yup.string()
-    //   .min(6, "Too Short!")
-    //   .max(50, "Too Long!")
-    //   .required("Required")
+    email: Yup.string()
+      .email(t("auth:email-error"))
+      .required(t("required")),
+    password: Yup.string()
+      .min(6, t("auth:too-short"))
+      .max(30, t("auth:too-long"))
+      .required(t("required"))
   });
 
   const handleSubmit = async (values, { setSubmitting }) => {

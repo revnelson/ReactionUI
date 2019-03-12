@@ -7,7 +7,7 @@ import XHR from "i18next-xhr-backend";
 import { initReactI18next } from "react-i18next";
 import { isServer } from "../lib";
 
-const namespaces = ["common", "auth"];
+const namespaces = ["common", "auth", "features"];
 
 const SITE_NAME = process.env.SITE_NAME;
 

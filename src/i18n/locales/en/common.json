@@ -2,12 +2,15 @@
   "cancel": "Cancel",
   "email": "Email",
   "features": "Features",
-  "i18n-example": "i18n Example",
+  "framework": "Framework",
+  "i18n-example": "i18n example",
   "i18n-support": "i18n support (via React i18Next)",
   "login": "Login",
   "logout": "Logout",
   "password": "Password",
+  "profile": "Profile",
   "register": "Register",
+  "required": "Required",
   "site-name": "ReactionUI",
   "submit": "Submit"
 }

@@ -1,1 +1,15 @@
-{}
+{
+  "cancel": "Annulla",
+  "email": "E-Mail",
+  "features": "Scopri",
+  "framework": "Framework",
+  "i18n-example": "Esempio di i18n",
+  "i18n-support": "i18n supporto",
+  "login": "Accedere",
+  "logout": "Chiusura sessione",
+  "password": "Password",
+  "profile": "Profilo",
+  "register": "Registrare",
+  "required": "Obbligatorio",
+  "submit": "Inviare"
+}

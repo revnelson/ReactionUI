@@ -74,9 +74,10 @@ Most of this is a mash up of these guides to get this specific combination of to
 - [Manuel Bieh](https://github.com/manuelbieh/react-ssr-setup)
 - [Patrick Cason](https://medium.com/@cereallarceny/server-side-rendering-in-create-react-app-with-all-the-goodies-without-ejecting-4c889d7db25e)
 
-Other tools used:
+Other resources used:
 
 - [othree - i18ncsv2json](https://github.com/othree/i18ncsv2json)
+- [Tailwind Toolbox](https://www.tailwindtoolbox.com/)
 
 ```
 
