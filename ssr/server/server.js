@@ -38,7 +38,7 @@ const lngDetector = new i18nextMiddleware.LanguageDetector(null, {
   cookieSecure: false // if need secure cookie
 });
 
-const namespaces = ["common", "auth"];
+const namespaces = ["common", "auth", "features"];
 
 const app = express();
 

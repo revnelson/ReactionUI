@@ -1,11 +1,21 @@
 import React from "react";
 import { useQuery, useMutation } from "react-apollo-hooks";
-import { appQuery, sidebarToggleMutation } from "../../store/App";
+import {
+  appQuery,
+  sidebarToggleMutation,
+  setAlertMutation
+} from "../../store/App";
 
 export const useApp = () => {
   const {
     data: { app }
   } = useQuery(appQuery);
+
+  const setAlertHook = useMutation(setAlertMutation);
+
+  const setAlert = alert => {
+    setAlertHook({ variables: { alert } });
+  };
 
   const sidebarToggleHook = useMutation(sidebarToggleMutation);
 
@@ -13,5 +23,5 @@ export const useApp = () => {
     sidebarToggleHook({ variables: { state } });
   };
 
-  return { app, sidebarToggle };
+  return { app, setAlert, sidebarToggle };
 };

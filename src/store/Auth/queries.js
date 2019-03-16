@@ -15,7 +15,7 @@ export const authQuery = gql`
         es
         it
         ru
-        ua
+        uk
       }
     }
   }

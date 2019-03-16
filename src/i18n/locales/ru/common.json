@@ -1,16 +1,19 @@
 {
   "cancel": "Отмена",
   "email": "Эл. адрес",
+  "error": "Ошибка",
   "features": "Функции",
   "framework": "Платформа",
   "i18n-example": "i18n пример",
   "i18n-support": "i18n опора (через React i18Next)",
   "login": "Входить",
   "logout": "Выход",
+  "name": "Имя",
   "password": "Пароль",
+  "please-login": "Пожалуйста, войдите",
   "profile": "Профиль",
+  "redirecting": "Перенаправление",
   "register": "Регистрировать",
   "required": "Обязательное",
-  "submit": "Отправить",
-  "name": "Имя"
+  "submit": "Отправить"
 }

@@ -1,4 +1,5 @@
 import { appQuery } from "./queries";
+import { defaults } from "./defaults";
 
 export const sidebarToggle = (_, { state }, { cache }) => {
   const sidebar = state;
@@ -6,6 +7,32 @@ export const sidebarToggle = (_, { state }, { cache }) => {
   const data = {
     app: {
       sidebar,
+      __typename: "app"
+    }
+  };
+
+  cache.writeData({ data });
+  return null;
+};
+
+export const setAlert = (_, { alert }, { cache }) => {
+  const def = defaults.app.alert;
+
+  let newAlert = { ...def };
+
+  alert &&
+    (newAlert = {
+      title: alert.title || def.title,
+      message: alert.message || def.message,
+      status: alert.status || def.status,
+      redirect: alert.redirect || def.redirect,
+      timeout: alert.timeout || def.timeout,
+      __typename: "alert"
+    });
+
+  const data = {
+    app: {
+      alert: { ...newAlert },
       __typename: "app"
     }
   };

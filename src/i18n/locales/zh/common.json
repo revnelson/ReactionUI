@@ -1,16 +1,19 @@
 {
   "cancel": "取消",
   "email": "电子邮件",
+  "error": "错误",
   "features": "功能",
   "framework": "框架",
   "i18n-example": "i18n 代码示例",
   "i18n-support": "i18n 支持（经由React i18Next)",
   "login": "登录",
   "logout": "注销",
+  "name": "名称",
   "password": "密码",
+  "please-login": "请登录",
   "profile": "个人资料",
+  "redirecting": "重定向",
   "register": "注册",
   "required": "必需",
-  "submit": "提交",
-  "name": "名称"
+  "submit": "提交"
 }

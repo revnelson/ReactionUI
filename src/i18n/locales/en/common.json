@@ -1,17 +1,20 @@
 {
   "cancel": "Cancel",
   "email": "Email",
+  "error": "Error",
   "features": "Features",
   "framework": "Framework",
   "i18n-example": "i18n example",
   "i18n-support": "i18n support (via React i18Next)",
   "login": "Login",
   "logout": "Logout",
+  "name": "Name",
   "password": "Password",
+  "please-login": "Please Login",
   "profile": "Profile",
+  "redirecting": "Redirecting",
   "register": "Register",
   "required": "Required",
   "site-name": "ReactionUI",
-  "submit": "Submit",
-  "name": "Name"
+  "submit": "Submit"
 }

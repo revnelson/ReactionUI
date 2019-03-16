@@ -6,11 +6,11 @@ export const sidebarToggleMutation = gql`
   }
 `;
 
-// export const openDrawerToggleQuery = gql`
-//   mutation openDrawerToggle {
-//     openDrawerToggle @client
-//   }
-// `;
+export const setAlertMutation = gql`
+  mutation setAlert($alert: Object) {
+    setAlert(alert: $alert) @client
+  }
+`;
 
 // export const toggleAllQuery = gql`
 //   mutation toggleAll($width: Int, $height: Int) {

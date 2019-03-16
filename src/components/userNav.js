@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 import { ReactComponent as FaLogin } from "../icons/solid/lock-open.svg";
 import { ReactComponent as FaLogout } from "../icons/solid/lock.svg";

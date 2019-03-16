@@ -6,10 +6,12 @@ import { withRouter } from "react-router-dom";
 import { loginUserMutation } from "../api";
 import { setUserMutation } from "../store/Auth/mutations";
 import { useTranslation } from "react-i18next";
+import { useApp } from "../lib/hooks";
 
 const formLabelStyle = tw`bg-transparent border-b m-auto block border-grey w-full mb-6 text-grey-darker pb-1`;
 
 export const LoginForm = withRouter(({ history, match }) => {
+  const { setAlert } = useApp();
   const [error, setError] = useState(null);
   const [errorOpen, setErrorOpen] = useState(false);
   const [modalForgot, setModalForgot] = useState(false);
@@ -24,7 +26,7 @@ export const LoginForm = withRouter(({ history, match }) => {
       .email(t("auth:email-error"))
       .required(t("required")),
     password: Yup.string()
-      .min(5, t("auth:too-short"))
+      .min(6, t("auth:too-short"))
       .max(30, t("auth:too-long"))
       .required(t("required"))
   });
@@ -44,25 +46,26 @@ export const LoginForm = withRouter(({ history, match }) => {
 
       user && setUserHook({ variables: { user } });
 
-      const destination = match.params.next ? `/${match.params.next}` : "/";
+      const destination = match.params.next
+        ? `/${match.params.next}`
+        : "/profile";
 
-      // notification.success({
-      //   message: t("login-successful"),
-      //   duration: 1,
-      //   onClose: () => {},
-      //   onClick: () => {
-      //     setSubmitting(false);
-      //     history.push(destination);
-      //   }
-      // });
+      setAlert({
+        title: t("auth:login-success"),
+        message: `${t("redirecting")}...`,
+        status: "success",
+        redirect: destination,
+        timeout: 2000
+      });
       setSubmitting(false);
-      history.push(destination);
     } catch (e) {
       console.log("LOGIN FORM SUBMITTING ERROR: ", e);
       setError(e.message);
       setSubmitting(false);
     }
   };
+
+  error && setAlert({ title: t("error"), message: error, status: "danger" });
 
   return (
     <div

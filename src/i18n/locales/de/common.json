@@ -1,16 +1,19 @@
 {
   "cancel": "Abbrechen",
   "email": "E-Mail",
+  "error": "Error",
   "features": "Funktionen",
   "framework": "Framework",
   "i18n-example": "i18n beispiel",
   "i18n-support": "i18n Unterstützung (durch React i18Next)",
   "login": "Anmelde",
   "logout": "Abmelden",
+  "name": "Name",
   "password": "Passwort",
+  "please-login": "Bitte loggen Sie sich ein",
   "profile": "Profil",
+  "redirecting": "Umleitung",
   "register": "Registrieren",
   "required": "Erforderliche",
-  "submit": "Absenden",
-  "name": "Name"
+  "submit": "Absenden"
 }

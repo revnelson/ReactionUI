@@ -1,16 +1,19 @@
 {
   "cancel": "Cancelar",
   "email": "Email",
+  "error": "Error",
   "features": "Características",
   "framework": "Marco",
   "i18n-example": "Ejemplo de i18n",
   "i18n-support": "i18n Soporte",
   "login": "Iniciar sesión",
   "logout": "Cerrar sesión",
+  "name": "Nombre",
   "password": "Contraseña",
+  "please-login": "Por favor Iniciar sesión",
   "profile": "Perfil",
+  "redirecting": "Redirigiendo",
   "register": "Registrar",
   "required": "Obligatorio",
-  "submit": "Enviar",
-  "name": "Nombre"
+  "submit": "Enviar"
 }

@@ -44,8 +44,8 @@ export const langs = {
     name: "Русский",
     flag: RussiaFlag
   },
-  ua: {
-    code: "ua",
+  uk: {
+    code: "uk",
     name: "Українська",
     flag: UkraineFlag
   }

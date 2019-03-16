@@ -1,10 +1,9 @@
-key,en,zh,ua,ru,de,es,it,fr
+key,en,zh,uk,ru,de,es,it,fr
+add-lang-name,Add your name in another language.,用另一种语言添加你的名字。,Додайте своє ім'я іншою мовою.,Добавьте свое имя на другом языке.,Fügen Sie Ihren Namen in einer anderen Sprache hinzu.,Agregue su nombre en otro idioma.,Aggiungi il tuo nome in un'altra lingua.,Ajoutez votre nom dans une autre langue.
 email-error,Invalid Email,无效的电子邮件,Неприпустима адреса електронної пошти,Недопустимый электронный адрес,Ungültige E-Mail,Email inválido,E-mail non valido,Email invalide
+login-success,Login Successful!,登陆成功！,Успешный вход в систему!,Успешный вход в систему!,Anmeldung erfolgreich!,¡Inicio de sesión correcto!,Accesso riuscito!,Connexion réussie!
+name-required,At least one name is required.,至少需要一个名称。,Потрібно принаймні одне ім'я.,Требуется хотя бы одно имя.,Mindestens ein Name ist erforderlich.,Se requiere al menos un nombre.,È richiesto almeno un nome,Au moins un nom est requis.
 password-error,Invalid Password,无效密码,Недійсний пароль,Неправильный пароль,Ungültiges Passwort,Contraseña invalida,Password non valida,Mot de passe incorrect
+register-success,Registration Successful!,注册成功！,Реєстрація успішна!,Регистрация прошла успешно!,Registrierung erfolgreich!,¡Registro exitoso!,Registrazione effettuata con successo!,Inscription réussi!
 too-long,Password cannot be longer than 30 characters.,密码不能超过30个字符。,Пароль не може перевищувати 30 символів.,Пароль не может быть длиннее 30 символов.,La contraseña no puede tener más de 30 caracteres.,La contraseña no puede tener más de 30 caracteres.,La password non può essere più lunga di 30 caratteri.,Le mot de passe ne peut pas dépasser 30 caractères.
 too-short,Password must be at least 6 characters.,密码必须至少6个字符。,Пароль повинен містити принаймні 6 символів.,Пароль должен содержать не менее 6 символов.,Passwort muss mindestens 6 Zeichen lang sein.,La contraseña debe tener al menos 6 caracteres.,La password deve essere di almeno 6 caratteri.,Le mot de passe doit être au moins de 6 caractères.
-name-required,At least one name is required.,至少需要一个名称。,Потрібно принаймні одне ім'я.,Требуется хотя бы одно имя.,Mindestens ein Name ist erforderlich.,Se requiere al menos un nombre.,È richiesto almeno un nome,Au moins un nom est requis.
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,

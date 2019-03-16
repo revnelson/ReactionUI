@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useAuth } from "../lib/hooks";
 import { Card } from "../components/ui";
 import { underlineAnimation } from "../style/effects";
-import { langs } from "../../config";
+import moment from "moment";
 
 const About = () => {
   const [t, i18n] = useTranslation("common");
@@ -15,6 +15,9 @@ const About = () => {
     Object.keys(auth.name).map(key => {
       if (auth.name[key]) return auth.name[key];
     })[0];
+
+  const memberSince = moment(auth.createdAt).format("MMM Do YYYY");
+  console.log(memberSince);
   return (
     <React.Fragment>
       <Helmet>
@@ -33,7 +36,7 @@ const About = () => {
         </div>
         <div css={tw`text-sm`}>
           <p css={tw`text-green mb-1 flex item-center`}>Member since:</p>
-          <p css={tw`text-grey-d1`}>Since last month</p>
+          <p css={tw`text-grey-d1`}>{memberSince}</p>
         </div>
       </Card>
     </React.Fragment>

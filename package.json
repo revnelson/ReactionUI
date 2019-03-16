@@ -69,6 +69,7 @@
     "isomorphic-unfetch": "^3.0.0",
     "js-cookie": "^2.2.0",
     "jsonwebtoken": "^8.5.0",
+    "moment": "^2.24.0",
     "node-fetch": "^2.3.0",
     "postcss-modules": "^1.4.1",
     "pretty-error": "^2.1.1",

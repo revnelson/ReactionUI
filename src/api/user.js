@@ -4,6 +4,8 @@ const userModel = gql`
   {
     id
     username
+    createdAt
+    updatedAt
     name {
       en
       zh
@@ -12,7 +14,7 @@ const userModel = gql`
       it
       fr
       ru
-      ua
+      uk
     }
   }
 `;
