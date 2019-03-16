@@ -7,7 +7,16 @@ export const authQuery = gql`
       username
       createdAt
       updatedAt
-      name
+      name {
+        en
+        zh
+        de
+        fr
+        es
+        it
+        ru
+        ua
+      }
     }
   }
 `;

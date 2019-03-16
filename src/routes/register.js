@@ -1,6 +1,6 @@
 import React from "react";
 import Helmet from "react-helmet-async";
-import { MyForm } from "../components/registerForm";
+import { RegistrationForm } from "../components/registerForm";
 import { useLogoutUser } from "../lib/hooks";
 
 const RegisterPage = () => {
@@ -13,8 +13,7 @@ const RegisterPage = () => {
       <div
         css={tw`flex flex-wrap justify-center content-center min-h-screen border-0 -mt-8`}
       >
-        <MyForm />
-        <button onClick={() => logoutUser()}>Log Out</button>
+        <RegistrationForm />
       </div>
     </React.Fragment>
   );

@@ -1,46 +1,43 @@
 import gql from "graphql-tag";
 
+const userModel = gql`
+  {
+    id
+    username
+    name {
+      en
+      zh
+      de
+      es
+      it
+      fr
+      ru
+      ua
+    }
+  }
+`;
+
 export const fetchUsersQuery = gql`
   query {
-    users {
-      id
-      username
-      createdAt
-      updatedAt
-    }
+    users ${userModel}
   }
 `;
 
 export const fetchUserQuery = gql`
   query fetchUser {
-    getUser {
-      id
-      username
-      createdAt
-      updatedAt
-    }
+    getUser ${userModel}
   }
 `;
 
 export const checkAuthQuery = gql`
   query {
-    checkAuth {
-      id
-      username
-      createdAt
-      updatedAt
-    }
+    checkAuth ${userModel}
   }
 `;
 
 export const registerUserMutation = gql`
-  mutation registerUser($username: String!, $password: String!) {
-    registerUser(username: $username, password: $password) {
-      id
-      username
-      createdAt
-      updatedAt
-    }
+  mutation registerUser($user: UserInput!) {
+    registerUser(user: $user) ${userModel}
   }
 `;
 
@@ -48,12 +45,7 @@ export const loginUserMutation = gql`
   mutation loginUser($username: String!, $password: String!) {
     loginUser(username: $username, password: $password) {
       token
-      user {
-        id
-        username
-        createdAt
-        updatedAt
-      }
+      user ${userModel}
     }
   }
 `;

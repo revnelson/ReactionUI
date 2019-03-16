@@ -1,6 +1,6 @@
 {
   "cancel": "Cancelar",
-  "email": "Correo electrónico",
+  "email": "Email",
   "features": "Características",
   "framework": "Marco",
   "i18n-example": "Ejemplo de i18n",
@@ -11,5 +11,6 @@
   "profile": "Perfil",
   "register": "Registrar",
   "required": "Obligatorio",
-  "submit": "Enviar"
+  "submit": "Enviar",
+  "name": "Nombre"
 }

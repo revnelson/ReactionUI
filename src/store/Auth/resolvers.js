@@ -1,4 +1,5 @@
 import { authQuery } from "./queries";
+import { defaults } from "./defaults";
 
 export const setUser = (_, { user }, { cache }) => {
   const data = {
@@ -7,7 +8,7 @@ export const setUser = (_, { user }, { cache }) => {
       username: user.username || "",
       createdAt: user.createdAt || "",
       updatedAt: user.updatedAt || "",
-      name: user.name || "",
+      name: { ...user.name, __typename: "name" } || defaults.auth.name,
       __typename: "auth"
     }
   };
@@ -23,7 +24,7 @@ export const clearUser = (_, none, { cache }) => {
       username: "",
       createdAt: "",
       updatedAt: "",
-      name: "",
+      name: defaults.auth.name,
       __typename: "auth"
     }
   };

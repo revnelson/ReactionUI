@@ -11,5 +11,6 @@
   "profile": "个人资料",
   "register": "注册",
   "required": "必需",
-  "submit": "提交"
+  "submit": "提交",
+  "name": "名称"
 }

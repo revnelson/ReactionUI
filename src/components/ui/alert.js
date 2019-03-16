@@ -2,6 +2,7 @@ import React from "react";
 import { ReactComponent as InfoIcon } from "../../icons/solid/info-circle.svg";
 import { ReactComponent as DangerIcon } from "../../icons/solid/exclamation-circle.svg";
 import { ReactComponent as SuccessIcon } from "../../icons/solid/check-circle.svg";
+import { slideRightAnimation } from "../../style/effects";
 
 export const Alert = ({ message, status, title }) => {
   const backgrounds = {
@@ -19,8 +20,12 @@ export const Alert = ({ message, status, title }) => {
     danger: tw`border-fuschia-l1`,
     success: tw`border-lime-l1`
   };
+  console.log("ALERT");
   return (
-    <div css={tw`flex rounded h-auto absolute p-top -mt-24`}>
+    <div
+      css={tw`flex rounded h-auto absolute p-top -mt-24`}
+      css={slideRightAnimation}
+    >
       <div
         css={backgrounds[status]}
         css={tw`w-16 text-center p-2 rounded-l-lg`}

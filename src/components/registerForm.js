@@ -5,64 +5,157 @@ import {
   Form,
   Field,
   ErrorMessage,
-  FieldArray
+  FieldArray,
+  yupToFormErrors
 } from "formik";
+import { useTranslation } from "react-i18next";
+import * as Yup from "yup";
+import { NameSelect } from "./forms/nameSelect";
+import { useMutation } from "react-apollo-hooks";
+import { registerUserMutation } from "../api";
+import { langs } from "../../config";
 
-export class MyForm extends React.Component {
-  handleSubmit = (values, { props = this.props, setSubmitting }) => {
-    setSubmitting(false);
+export const RegistrationForm = () => {
+  const registerUserHook = useMutation(registerUserMutation);
+  const [t, i18n] = useTranslation(["common", "auth"]);
+
+  let nameSchema = {};
+
+  Object.keys(langs).map(key => (nameSchema[key] = Yup.string()));
+
+  const nameValidation = value => {
+    let passed = false;
+    value.map(v => {
+      if (v.title) {
+        console.log("VALIDATING NAMES: ", v.title);
+        passed = true;
+      }
+    });
+    return passed;
+  };
+
+  const RegisterSchema = Yup.object().shape({
+    email: Yup.string()
+      .email(t("auth:email-error"))
+      .required(t("required")),
+    password: Yup.string()
+      .min(6, t("auth:too-short"))
+      .max(30, t("auth:too-long"))
+      .required(t("required")),
+    names: Yup.array()
+      .of(
+        Yup.object().shape({
+          ...nameSchema
+        })
+      )
+      .test("at-least-one-name", t("auth:name-required"), nameValidation)
+  });
+
+  const handleSubmit = async (values, actions) => {
+    let names = {};
+
+    values.names.map(name => {
+      name.title && (names[name.lang] = name.title);
+    });
+
+    const variables = {
+      user: {
+        username: values.email,
+        password: values.password,
+        name: names
+      }
+    };
+
+    try {
+      const {
+        data: { registerUser }
+      } = await registerUserHook({ variables });
+      console.log("REGISTRATION USER: ", registerUser);
+      // TODO - Send success / error alert and redirect to login page.
+    } catch (e) {
+      console.log("REGISTRATION ERROR: ", e);
+    }
+    actions.setSubmitting(false);
     return;
   };
-  render() {
-    let vehicles = ["car", "motorcycle", "airplane", "rocket"];
 
-    return (
-      <Formik
-        initialValues={{ vehicles: vehicles }}
-        validate={values => {
-          let errors = [];
-          if (!values.vehicles.length)
-            errors.vehicles = "At least one vehicle is required.";
-          return errors;
-        }}
-        onSubmit={this.handleSubmit}
-        render={formProps => {
-          return (
-            <Form>
-              <FieldArray
-                name="vehicles"
-                render={arrayHelpers => (
-                  <div>
-                    {formProps.values.vehicles.map((vehicle, index) => (
-                      <div key={index}>
-                        <Field name={`vehicles.${index}`} />
-                        <button
-                          type="button"
-                          onClick={() => arrayHelpers.remove(index)}
-                        >
-                          Remove
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => arrayHelpers.insert(index, "")}
-                        >
-                          Add Vehicles at this index
-                        </button>
-                      </div>
-                    ))}
-                    <button type="button" onClick={() => arrayHelpers.push("")}>
-                      Add Vehicle
-                    </button>
-                  </div>
-                )}
-              />
-            </Form>
-          );
-        }}
-      />
-    );
-  }
-}
+  return (
+    <div css={tw`flex flex-col shadow max-w-75`}>
+      <div css={tw`w-full bg-grey-d2 rounded-tl rounded-tr text-white p-8`}>
+        <h2 css={tw`uppercase`}>{t("register")}</h2>
+      </div>
+      <div css={tw`p-8 bg-white rounded-bl rounded-br h-auto w-full`}>
+        <Formik
+          initialValues={{ names: [{ lang: i18n.language, title: "" }] }}
+          validationSchema={RegisterSchema}
+          onSubmit={handleSubmit}
+          render={formProps => {
+            return (
+              <Form>
+                <div css={tw`flex flex-row flex-no-wrap w-full`}>
+                  <label id="email" css={tw`text-xs w-full text-grey pr-4`}>
+                    {t("email")}
+                  </label>
+                  <Field
+                    name="email"
+                    type="text"
+                    css={tw`bg-transparent border-b m-auto block border-grey w-full mb-6 text-grey-d1 pb-1`}
+                  />
+                </div>
+                <ErrorMessage
+                  css={tw`text-xs text-grey -mt-4 text-fuschia`}
+                  name="email"
+                  component="div"
+                />
+                <div css={tw`flex flex-row flex-no-wrap w-full mt-8`}>
+                  <label id="password" css={tw`text-xs text-grey pr-4 w-full`}>
+                    {t("password")}
+                  </label>
+                  <Field
+                    name="password"
+                    autoComplete="new-password"
+                    type="password"
+                    css={tw`bg-transparent border-b m-auto block border-grey w-full mb-6 text-grey-d1 pb-1`}
+                  />
+                </div>{" "}
+                <ErrorMessage
+                  css={tw`text-xs text-grey -mt-4 text-fuschia`}
+                  name="password"
+                  component="div"
+                />
+                <label id="vehicle" css={tw`text-xs text-grey pr-4 mt-8`}>
+                  {t("name")}
+                </label>
+                <NameSelect values={formProps.values} />
+                <ErrorMessage
+                  css={tw`text-xs text-grey -mt-4 text-fuschia`}
+                  name="names"
+                  component="div"
+                />
+                <button
+                  type="submit"
+                  disabled={formProps.isSubmitting}
+                  className="transition"
+                  css={tw`shadow pt-3 mt-8 pb-3 w-full text-white bg-primary hover:bg-primary-l1 rounded-full`}
+                >
+                  {t("submit")}
+                </button>
+                <button
+                  type="submit"
+                  disabled={formProps.isSubmitting}
+                  className="transition"
+                  css={tw`shadow pt-3 mt-8 pb-3 w-full text-white bg-primary hover:bg-primary-l1 rounded-full`}
+                >
+                  {t("cancel")}
+                </button>
+              </Form>
+            );
+          }}
+        />
+      </div>
+    </div>
+  );
+};
 
 // import {
 //   AutoComplete,

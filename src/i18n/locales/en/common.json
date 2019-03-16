@@ -12,5 +12,6 @@
   "register": "Register",
   "required": "Required",
   "site-name": "ReactionUI",
-  "submit": "Submit"
+  "submit": "Submit",
+  "name": "Name"
 }

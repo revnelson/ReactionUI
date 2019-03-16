@@ -24,7 +24,7 @@ export const LoginForm = withRouter(({ history, match }) => {
       .email(t("auth:email-error"))
       .required(t("required")),
     password: Yup.string()
-      .min(6, t("auth:too-short"))
+      .min(5, t("auth:too-short"))
       .max(30, t("auth:too-long"))
       .required(t("required"))
   });
@@ -66,7 +66,7 @@ export const LoginForm = withRouter(({ history, match }) => {
 
   return (
     <div
-      css={tw`flex-1 rounded h-full overflow-hidden shadow sm:flex md:max-w-50`}
+      css={tw`flex-1 rounded h-full overflow-hidden shadow sm:flex md:max-w-75`}
     >
       <div css={tw`sm:w-2/5 w-full bg-grey-d2 bg-cover bg-center text-white`}>
         <div css={tw`p-8`}>

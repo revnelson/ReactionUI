@@ -7,9 +7,10 @@
   "i18n-support": "i18n Unterstützung (durch React i18Next)",
   "login": "Anmelde",
   "logout": "Abmelden",
-  "password": "Kennwort",
+  "password": "Passwort",
   "profile": "Profil",
   "register": "Registrieren",
   "required": "Erforderliche",
-  "submit": "Absenden"
+  "submit": "Absenden",
+  "name": "Name"
 }
