@@ -1,10 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { LangSelector } from "../../components/langSelector";
 import { UserNav } from "../../components/userNav";
 import { underlineAnimation } from "../../style/effects";
 import { Search } from "../../components/search";
-import { useTranslation } from "react-i18next";
+import { Alert } from "../../components/ui";
 
 export const Header = () => {
   const [t] = useTranslation("common");
@@ -47,6 +48,7 @@ export const Header = () => {
           </li>
         </ul>
       </div>
+      <Alert />
     </nav>
   );
 };

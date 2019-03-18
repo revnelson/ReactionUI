@@ -1,5 +1,6 @@
 key,en,zh,uk,ru,de,es,it,fr
-apollo,Apollo,,,,,,,
+data,Data,数据,Дані,Данные,Daten,Datos,Dati,Les données
 languages,Languages,语言,Мови,Языки,Sprachen,Idiomas,Lingue,Langues
 optimization,Optimization,优化,Оптимізація,Оптимизация,Optimierung,Optimización,Ottimizzazione,Optimisation
 styling,Styling,样式,Застосування стилів,Стили,Stile,Estilos,Stile,Styles
+utilities,Utilities,实用程序,Утиліти,Служебные программы,Dienstprogramme,Utilidades,Utilità,Utilitaires

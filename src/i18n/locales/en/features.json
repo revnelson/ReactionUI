@@ -1,6 +1,7 @@
 {
-  "apollo": "Apollo",
+  "data": "Data",
   "languages": "Languages",
   "optimization": "Optimization",
-  "styling": "Styling"
+  "styling": "Styling",
+  "utilities": "Utilities"
 }

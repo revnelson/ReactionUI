@@ -9,7 +9,6 @@ import moment from "moment";
 const About = () => {
   const [t, i18n] = useTranslation("common");
   const { auth } = useAuth();
-  console.log("PROFILE Names: ", auth.name);
   const name =
     auth.name[i18n.language] ||
     Object.keys(auth.name).map(key => {
@@ -17,7 +16,6 @@ const About = () => {
     })[0];
 
   const memberSince = moment(auth.createdAt).format("MMM Do YYYY");
-  console.log(memberSince);
   return (
     <React.Fragment>
       <Helmet>

@@ -1,5 +1,7 @@
 {
+  "data": "Les données",
   "languages": "Langues",
   "optimization": "Optimisation",
-  "styling": "Styles"
+  "styling": "Styles",
+  "utilities": "Utilitaires"
 }

@@ -2,7 +2,7 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useTranslation } from "react-i18next";
 import * as Yup from "yup";
-import { NameSelect } from "./forms/nameSelect";
+import { NameSelect } from "./nameSelect";
 import { useMutation } from "react-apollo-hooks";
 import { registerUserMutation } from "../api";
 import { langs } from "../../config";

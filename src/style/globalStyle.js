@@ -473,17 +473,41 @@ table {
 }
 
 .transition {
-  transition: all .2s cubic-bezier(0.455, 0.03, 0.515, 0.955)
+  transition: all .2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
 }
 
 .transition-slow {
-  transition: all 2s cubic-bezier(0.455, 0.03, 0.515, 0.955)
+  transition: all 2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
 }
 
 .transition-ease {
-  transition: all .3s ease
+  transition: all .3s ease;
 }
 
 .transition-ease-slow {
-  transition: all 2s ease
-}`;
+  transition: all 2s ease;
+}
+
+.slide-enter {
+  opacity: 0.3;
+  transform: translateX(100%);
+}
+
+.slide-enter-active {
+  opacity: 1;
+  transform: translateY(0%);
+  transition: all 300ms ease-out;
+}
+
+.slide-exit {
+  opacity: 1;
+  transform: translateY(0%);
+}
+
+.slide-exit-active {
+  opacity: 0.3;
+  transform: translateX(100%);
+  transition: all 300ms ease-out;
+}
+
+`;

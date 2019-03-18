@@ -11,3 +11,12 @@ export const Card = ({ children }) => {
     </div>
   );
 };
+
+export const FeatureCard = ({ children, id, title }) => {
+  return (
+    <div css={tw`rounded h-auto shadow bg-white min-w-50 m-8 p-6`} id={id}>
+      <h2 css={tw`pb-4`}>{title}</h2>
+      {children}
+    </div>
+  );
+};

@@ -39,3 +39,18 @@ const slideRightKeyframes = keyframes`
 export const slideRightAnimation = css`
   animation: ${slideRightKeyframes} 0.5s cubic-bezier(0.23, 1, 0.32, 1) both;
 `;
+
+const slideLeftKeyframes = keyframes`
+0% {
+  transform: translateX(0) scaleY(1) scaleX(1);
+  opacity: 0;
+}
+100% {
+  transform: translateX(1000px) scaleY(1) scaleX(0.2);
+  opacity: 1;
+}
+`;
+
+export const slideLeftAnimation = css`
+  animation: ${slideLeftKeyframes} 0.5s cubic-bezier(0.23, 1, 0.32, 1) both;
+`;

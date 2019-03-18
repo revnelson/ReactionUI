@@ -2,11 +2,11 @@ key,en,zh,uk,ru,de,es,it,fr
 cancel,Cancel,取消,Скасувати,Отмена,Abbrechen,Cancelar,Annulla,Annuler
 email,Email,电子邮件,Електронна пошта,Эл. адрес,E-Mail,Email,E-Mail,Email
 error,Error,错误,Помилка,Ошибка,Error,Error,Errore,Erreur
-features,Features,功能,Особливості,Функции,Funktionen,Características,Scopri,Fonctionnalités
+features,Features,功能,Знайомство,Функции,Funktionen,Características,Scopri,Fonctionnalités
 framework,Framework,框架,інфраструктура,Платформа,Framework,Marco,Framework,Infrastructure
 i18n-example,i18n example,i18n 代码示例,i18n зразок,i18n пример,i18n beispiel,Ejemplo de i18n,Esempio di i18n,Exemple de i18n
 i18n-support,i18n support (via React i18Next),i18n 支持（经由React i18Next),i18n опора (через React i18Next),i18n опора (через React i18Next),i18n Unterstützung (durch React i18Next),i18n Soporte,i18n supporto,i18n support
-login,Login,登录,ідентифікатор входу,Входить,Anmelde,Iniciar sesión,Accedere,Ouvrir une session
+login,Login,登录,Логін,Логин,Anmelde,Iniciar sesión,Accedere,Ouvrir une session
 logout,Logout,注销,Вихід,Выход,Abmelden,Cerrar sesión,Chiusura sessione,Déconnexion
 name,Name,名称,Iм’я,Имя,Name,Nombre,Nome,Nom
 password,Password,密码,Пароль,Пароль,Passwort,Contraseña,Password,Mot de passe
