@@ -41,20 +41,22 @@ export const HTML = (apolloData, helmet) => {
         >
           <div id="app" dangerouslySetInnerHTML={{ __html: "" }} />
           {requiredScripts}
-          {process.env.googleTrackingId && (
+          {process.env.GOOGLE_ID && (
             <script
               dangerouslySetInnerHTML={{
-                __html:
-                  "window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;" +
-                  `ga('create','${
-                    process.env.googleTrackingId
-                  }','auto');ga('send','pageview')`
+                __html: `window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+
+                gtag('config', '${process.env.GOOGLE_ID}');`
               }}
             />
           )}
-          {process.env.googleTrackingId && (
+          {process.env.GOOGLE_ID && (
             <script
-              src="https://www.google-analytics.com/analytics.js"
+              src={`https://www.googletagmanager.com/gtag/js?id=${
+                process.env.GOOGLE_ID
+              }`}
               async
               defer
             />
