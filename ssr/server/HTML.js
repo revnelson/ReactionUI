@@ -30,17 +30,14 @@ export const HTML = (apolloData, helmet) => {
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           {helmet.meta.toComponent()}
           {helmet.link.toComponent()}
-          {scripts.map(script => (
-            <link key={script} rel="preload" href={script} as="script" />
-          ))}
-          <link rel="manifest" href="/site.webmanifest" />
-          <link rel="apple-touch-icon" href="/icon.png" />
-        </head>
-        <body
-          css={tw`font-sans bg-near-white transparent leading-normal tracking-normal`}
-        >
-          <div id="app" dangerouslySetInnerHTML={{ __html: "" }} />
-          {requiredScripts}
+          {process.env.GOOGLE_ID && (
+            <script
+              src={`https://www.googletagmanager.com/gtag/js?id=${
+                process.env.GOOGLE_ID
+              }`}
+              async
+            />
+          )}
           {process.env.GOOGLE_ID && (
             <script
               dangerouslySetInnerHTML={{
@@ -52,15 +49,17 @@ export const HTML = (apolloData, helmet) => {
               }}
             />
           )}
-          {process.env.GOOGLE_ID && (
-            <script
-              src={`https://www.googletagmanager.com/gtag/js?id=${
-                process.env.GOOGLE_ID
-              }`}
-              async
-              defer
-            />
-          )}
+          {scripts.map(script => (
+            <link key={script} rel="preload" href={script} as="script" />
+          ))}
+          <link rel="manifest" href="/site.webmanifest" />
+          <link rel="apple-touch-icon" href="/icon.png" />
+        </head>
+        <body
+          css={tw`font-sans bg-near-white transparent leading-normal tracking-normal`}
+        >
+          <div id="app" dangerouslySetInnerHTML={{ __html: "" }} />
+          {requiredScripts}
         </body>
       </html>
     );
