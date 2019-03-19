@@ -93,6 +93,7 @@ export const serverConfig = {
     // https://webpack.js.org/plugins/define-plugin/
     new webpack.DefinePlugin({
       "process.env.BROWSER": false,
+      "process.env.GOOGLE_ID": process.env.GOOGLE_ID,
       "process.env.HOST": process.env.HOST,
       "process.env.NODE_ENV": process.env.NODE_ENV,
       "process.env.PORT": process.env.PORT,
