@@ -13,13 +13,16 @@ export const AppLayout = ({ children }) => {
         css={app.sidebar && tw`flex`}
       >
         {app.sidebar && <div css={tw`md:w-1/6`} />}
-        <div css={app.sidebar && tw`w-full md:pl-3 md:w-5/6`}>
+        <div
+          css={app.sidebar && tw`w-full md:pl-3 md:w-5/6`}
+          className="transition"
+        >
           <div css={tw`min-h-screen mt-16`}>{children}</div>
           <div css={tw`block text-center`}>
             ReactionUI © 2019 Created by Michael Nelson
           </div>{" "}
         </div>
-        {app.sidebar && <Sidebar />}
+        <Sidebar />
       </div>
     </React.Fragment>
   );

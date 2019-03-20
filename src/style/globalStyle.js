@@ -510,4 +510,26 @@ table {
   transition: all 300ms ease-out;
 }
 
+.slide-left-enter {
+  opacity: 0.3;
+  transform: translateX(-100%);
+}
+
+.slide-left-enter-active {
+  opacity: 1;
+  transform: translateY(0%);
+  transition: all 150ms ease-out;
+}
+
+.slide-left-exit {
+  opacity: 1;
+  transform: translateY(0%);
+}
+
+.slide-left-exit-active {
+  opacity: 0.3;
+  transform: translateX(-100%);
+  transition: all 150ms ease-out;
+}
+
 `;

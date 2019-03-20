@@ -5,7 +5,6 @@ import { ReactComponent as InfoIcon } from "../../icons/solid/info-circle.svg";
 import { ReactComponent as DangerIcon } from "../../icons/solid/exclamation-circle.svg";
 import { ReactComponent as SuccessIcon } from "../../icons/solid/check-circle.svg";
 import { ReactComponent as XIcon } from "../../icons/solid/times.svg";
-import { slideRightAnimation, slideLeftAnimation } from "../../style/effects";
 import { useApp } from "../../lib/hooks";
 
 export const Alert = withRouter(({ history }) => {
@@ -35,7 +34,6 @@ export const Alert = withRouter(({ history }) => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      animation = slideLeftAnimation;
       setAlert();
       alert.redirect && history.push(alert.redirect);
     }, alert.timeout);

@@ -31,23 +31,23 @@ export const HTML = (apolloData, helmet) => {
           {helmet.meta.toComponent()}
           {helmet.link.toComponent()}
           {process.env.GOOGLE_ID && (
-            <script
-              src={`https://www.googletagmanager.com/gtag/js?id=${
-                process.env.GOOGLE_ID
-              }`}
-              async
-            />
-          )}
-          {process.env.GOOGLE_ID && (
-            <script
-              dangerouslySetInnerHTML={{
-                __html: `window.dataLayer = window.dataLayer || [];
+            <React.Fragment>
+              <script
+                src={`https://www.googletagmanager.com/gtag/js?id=${
+                  process.env.GOOGLE_ID
+                }`}
+                async
+              />
+              <script
+                dangerouslySetInnerHTML={{
+                  __html: `window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
 
                 gtag('config', '${process.env.GOOGLE_ID}');`
-              }}
-            />
+                }}
+              />
+            </React.Fragment>
           )}
           {scripts.map(script => (
             <link key={script} rel="preload" href={script} as="script" />

@@ -8,6 +8,8 @@ import { ReactComponent as ItalyFlag } from "../src/icons/flags/4x3/it.svg";
 import { ReactComponent as RussiaFlag } from "../src/icons/flags/4x3/ru.svg";
 import { ReactComponent as UkraineFlag } from "../src/icons/flags/4x3/ua.svg";
 
+export const namespaces = ["common", "auth", "features"];
+
 export const langs = {
   en: {
     code: "en",

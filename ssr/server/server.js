@@ -9,6 +9,7 @@ import i18nextMiddleware from "i18next-express-middleware";
 import i18n from "../../src/i18n";
 import { SSR } from "./serverRender";
 import config from "../config";
+import { namespaces } from "../../config";
 
 process.on("unhandledRejection", (reason, p) => {
   console.error("Unhandled Rejection at:", p, "reason:", reason);
@@ -37,8 +38,6 @@ const lngDetector = new i18nextMiddleware.LanguageDetector(null, {
   cookieDomain: `${SITE_NAME}-language`,
   cookieSecure: false // if need secure cookie
 });
-
-const namespaces = ["common", "auth", "features"];
 
 const app = express();
 
